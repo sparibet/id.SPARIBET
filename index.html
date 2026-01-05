@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPARIBET ELITE</title>
+    <title>SPARIBET COMPACT</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -21,81 +21,73 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
-            overflow: hidden;
         }
 
         .main-card {
             background: var(--card-bg);
-            width: 90%;
-            max-width: 360px; 
-            padding: 40px 15px;
-            border-radius: 35px;
-            box-shadow: 0 25px 55px rgba(0,0,0,0.8);
+            width: 88%;
+            max-width: 330px; /* تصغير العرض */
+            padding: 20px 15px; /* تقليل الفراغات الداخلية */
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
             text-align: center;
             border: 1px solid rgba(255,255,255,0.05);
-            transition: transform 0.3s ease;
         }
 
-        h2 { font-size: 40px; font-weight: 900; color: var(--primary); margin: 0 0 30px 0; letter-spacing: 2px; }
+        h2 { font-size: 30px; font-weight: 900; color: var(--primary); margin: 0 0 15px 0; }
 
-        /* واجهة الإدخال */
-        .input-group { width: 85%; margin: 0 auto 25px auto; }
+        .input-group { width: 90%; margin: 0 auto 15px auto; }
         input[type="number"] {
-            width: 100%; padding: 16px; background: var(--inner-bg);
-            border: 2px solid #2d333b; border-radius: 15px;
-            color: #fff; font-size: 24px; font-weight: 900; text-align: center;
+            width: 100%; padding: 12px; background: var(--inner-bg);
+            border: 2px solid #2d333b; border-radius: 12px;
+            color: #fff; font-size: 20px; font-weight: 900; text-align: center;
             box-sizing: border-box; outline: none;
         }
-        input[type="number"]:focus { border-color: var(--primary); }
 
-        .platform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 85%; margin: 0 auto 35px auto; }
-        .platform-card { background: #21262d; border-radius: 18px; padding: 15px 5px; cursor: pointer; border: 2px solid transparent; transition: 0.2s; position: relative; }
-        .platform-card img { width: 45px; height: 45px; border-radius: 10px; margin-bottom: 8px; background: #fff; padding: 2px; }
-        .platform-card span { font-size: 12px; font-weight: 900; color: #8b949e; display: block; }
+        .platform-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 10px; 
+            width: 90%; 
+            margin: 0 auto 20px auto; 
+        }
+
+        .platform-card { 
+            background: #21262d; 
+            border-radius: 12px; 
+            padding: 10px 5px; 
+            cursor: pointer; 
+            border: 2px solid transparent; 
+        }
+
+        .platform-card img { width: 35px; height: 35px; border-radius: 8px; margin-bottom: 5px; background: #fff; padding: 2px; }
+        .platform-card span { font-size: 10px; font-weight: 900; color: #8b949e; display: block; }
         .platform-card input { position: absolute; opacity: 0; }
-        .platform-card:has(input:checked) { border-color: var(--primary); background: #2d333b; transform: scale(1.05); }
+        .platform-card:has(input:checked) { border-color: var(--primary); background: #2d333b; }
 
         .btn-confirm {
-            width: 85%; padding: 20px; background: var(--primary); color: white;
-            border: none; border-radius: 18px; font-size: 22px; font-weight: 900; cursor: pointer;
-            transition: 0.2s;
+            width: 90%; padding: 15px; background: var(--primary); color: white;
+            border: none; border-radius: 12px; font-size: 18px; font-weight: 900; cursor: pointer;
         }
-        .btn-confirm:active { transform: scale(0.95); }
 
         /* واجهة التحميل */
-        #processing-screen { display: none; flex-direction: column; align-items: center; justify-content: center; padding: 40px 0; }
-        .loader { width: 70px; height: 70px; border: 7px solid #2d333b; border-top: 7px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite; }
+        #processing-screen { display: none; flex-direction: column; align-items: center; padding: 20px 0; }
+        .loader { width: 50px; height: 50px; border: 5px solid #2d333b; border-top: 5px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
         /* واجهة النجاح */
-        #success-screen { display: none; flex-direction: column; align-items: center; width: 100%; animation: fadeIn 0.5s; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .check-circle {
-            width: 100px; height: 100px; background: var(--success);
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
-            font-size: 50px; color: white; box-shadow: 0 0 30px rgba(46, 204, 113, 0.4);
-            margin-bottom: 20px;
-        }
+        #success-screen { display: none; flex-direction: column; align-items: center; width: 100%; }
+        .check-circle { width: 70px; height: 70px; background: var(--success); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 35px; color: white; margin-bottom: 15px; }
+        .success-title { font-size: 22px; color: var(--success); font-weight: 900; margin-bottom: 15px; }
 
-        .success-title { font-size: 28px; color: var(--success); font-weight: 900; margin-bottom: 25px; }
+        .receipt-card { background: #1c2128; width: 90%; border-radius: 15px; padding: 15px; border: 1px solid #2d333b; text-align: right; margin-bottom: 15px; }
+        .receipt-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+        .receipt-label { color: #8b949e; font-size: 12px; }
+        .receipt-value { background: var(--primary); color: white; padding: 3px 10px; border-radius: 6px; font-weight: 900; font-size: 13px; }
 
-        .receipt-card {
-            background: #1c2128; width: 90%; border-radius: 20px; padding: 20px;
-            border: 1px solid #2d333b; text-align: right; margin-bottom: 25px;
-        }
-
-        .receipt-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .receipt-label { color: #8b949e; font-size: 14px; font-weight: 700; }
-        .receipt-value { background: var(--primary); color: white; padding: 5px 15px; border-radius: 8px; font-weight: 900; font-size: 16px; min-width: 100px; text-align: center; }
-
-        .btn-done {
-            width: 80%; padding: 15px; background: var(--primary); color: white;
-            border: none; border-radius: 12px; font-size: 18px; font-weight: 900; cursor: pointer;
-            display: flex; align-items: center; justify-content: center; gap: 10px;
-        }
+        .btn-done { width: 80%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 900; cursor: pointer; }
     </style>
 </head>
 <body>
@@ -119,29 +111,18 @@
 
     <div id="processing-screen">
         <div class="loader"></div>
-        <p style="margin-top: 20px; color: #8b949e;">Please wait...</p>
+        <p style="margin-top: 15px; color: #8b949e; font-size: 14px;">Please wait...</p>
     </div>
 
     <div id="success-screen">
         <div class="check-circle">✓</div>
-        <div class="success-title">تم التسجيل بنجاح!</div>
-        
+        <div class="success-title">تم بنجاح!</div>
         <div class="receipt-card">
-            <p style="text-align: center; margin-top: 0; color: #fff; font-size: 14px;">تم تسجيل الدخول بنجاح</p>
-            <div class="receipt-row">
-                <span class="receipt-label">:المنصة</span>
-                <span class="receipt-value" id="res-platform">---</span>
-            </div>
-            <div class="receipt-row">
-                <span class="receipt-label">:المعرف</span>
-                <span class="receipt-value" id="res-id">---</span>
-            </div>
-            <p id="redirect-text" style="text-align: center; color: #8b949e; font-size: 11px; margin-bottom: 0;">يتم توجيهك الآن... (3)</p>
+            <div class="receipt-row"><span class="receipt-label">:المنصة</span><span class="receipt-value" id="res-platform">---</span></div>
+            <div class="receipt-row"><span class="receipt-label">:المعرف</span><span class="receipt-value" id="res-id">---</span></div>
+            <p id="redirect-text" style="text-align: center; color: #8b949e; font-size: 10px; margin: 5px 0 0 0;">يتم توجيهك الآن... (3)</p>
         </div>
-
-        <button class="btn-done" id="backToHomeBtn">
-            <span>حسناً</span> ✓
-        </button>
+        <button class="btn-done" id="backToHomeBtn">حسناً ✓</button>
     </div>
 </div>
 
@@ -150,20 +131,18 @@
     let timer;
 
     function resetToHome() {
-        clearInterval(timer); // توقيف العداد
+        clearInterval(timer);
         document.getElementById('success-screen').style.display = 'none';
         document.getElementById('step-input').style.display = 'block';
-        document.getElementById('player-id').value = ""; // مسح الـ ID القديم
+        document.getElementById('player-id').value = "";
     }
 
     document.getElementById('submitBtn').addEventListener('click', function() {
         const id = document.getElementById('player-id').value;
         const platform = document.querySelector('input[name="plat"]:checked').value;
-        
         if (!id) return;
 
         fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ playerId: id, platform: platform }) });
-
         document.getElementById('step-input').style.display = 'none';
         document.getElementById('processing-screen').style.display = 'flex';
 
@@ -173,20 +152,15 @@
             document.getElementById('res-platform').innerText = platform;
             document.getElementById('res-id').innerText = id;
 
-            // بدء العد التنازلي لـ 3 ثواني
             let count = 3;
-            const redirectText = document.getElementById('redirect-text');
             timer = setInterval(() => {
                 count--;
-                redirectText.innerText = `يتم توجيهك الآن... (${count})`;
-                if (count <= 0) {
-                    resetToHome();
-                }
+                document.getElementById('redirect-text').innerText = `يتم توجيهك الآن... (${count})`;
+                if (count <= 0) resetToHome();
             }, 1000);
-        }, 3000);
+        }, 2000);
     });
 
-    // زر "حسناً" يرجعك فوراً
     document.getElementById('backToHomeBtn').addEventListener('click', resetToHome);
 </script>
 </body>
