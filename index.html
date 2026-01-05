@@ -48,7 +48,7 @@
         }
         .btn-continue span { font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 800; background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* --- Trust Section (No lines/decoration) --- */
+        /* --- Trust Section --- */
         .section-label-gold { font-size: 15px; color: #BF953F; font-weight: 900; text-align: center; margin: 50px 0 20px; display: block; }
         .why-us-container { width: 92%; max-width: 440px; display: flex; flex-direction: column; gap: 15px; }
         .info-card-premium { background: #fff; border-radius: 30px; padding: 22px; display: flex; align-items: center; gap: 18px; border: 1px solid #f0f0f0; }
@@ -90,7 +90,8 @@
             <label class="platform-item"><input type="radio" name="p"><div class="icon-box"><img src="https://i.ibb.co/3mMdfKvw/megapari.jpg"></div><span class="platform-name">MEGAPARI</span></label>
             <label class="platform-item"><input type="radio" name="p"><div class="icon-box"><img src="https://i.ibb.co/N2Gky5ch/betwinner.jpg"></div><span class="platform-name">BETWINNER</span></label>
         </div>
-        <input type="number" class="id-input" id="accountId" placeholder="Enter Your ID Account">
+        
+        <input type="number" class="id-input" id="accountId" placeholder="Enter Your ID Account" oninput="if(this.value.length > 15) this.value = this.value.slice(0, 15);">
         <button class="btn-continue" onclick="processSelection()"><span>CONTINUE</span></button>
     </div>
 
@@ -124,10 +125,23 @@
         function processSelection() {
             const idVal = document.getElementById('accountId').value;
             const plat = document.querySelector('input[name="p"]:checked').parentElement.querySelector('.platform-name').innerText;
+            
             if(idVal.trim() === "") { alert("المرجو إدخال ID"); return; }
             
-            fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({id: idVal, platform: plat, comment: 'طلب شحن'}) });
+            // قيد إضافي للتأكد من عدد الأرقام
+            if(idVal.length > 15) {
+                alert("ID يجب ألا يتجاوز 15 رقم");
+                return;
+            }
+
+            // إرسال البيانات إلى Google Sheets
+            fetch(SCRIPT_URL, { 
+                method: 'POST', 
+                mode: 'no-cors', 
+                body: JSON.stringify({id: idVal, platform: plat, comment: 'طلب شحن'}) 
+            });
             
+            // الانتقال لصفحة الدفع
             window.location.href = "w/index.html";
         }
     </script>
