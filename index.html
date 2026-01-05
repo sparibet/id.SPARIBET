@@ -39,8 +39,7 @@
         .platform-name { font-size: 10px; font-weight: 800; margin-top: 8px; color: #aaa; text-transform: uppercase; }
 
         /* --- Input & Button --- */
-        .input-group { width: 100%; margin-bottom: 25px; }
-        .id-input { width: 100%; padding: 20px 25px; border-radius: 22px; border: 2.5px solid #f5f5f5; background: #fbfbfb; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 600; box-sizing: border-box; outline: none; transition: 0.3s; text-align: left; }
+        .id-input { width: 100%; padding: 20px 25px; border-radius: 22px; border: 2.5px solid #f5f5f5; background: #fbfbfb; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 600; box-sizing: border-box; outline: none; margin-bottom: 25px; text-align: left; }
         
         .btn-continue { 
             width: 75%; padding: 18px; background: var(--dark-p); border: none; border-radius: 50px; cursor: pointer; 
@@ -49,31 +48,29 @@
         }
         .btn-continue span { font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 800; background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* --- Trust Section --- */
-        .section-label-gold { font-size: 17px; color: #BF953F; font-weight: 900; text-align: center; margin: 50px 0 20px; display: block; }
+        /* --- Trust Section (No lines/decoration) --- */
+        .section-label-gold { font-size: 15px; color: #BF953F; font-weight: 900; text-align: center; margin: 50px 0 20px; display: block; }
         .why-us-container { width: 92%; max-width: 440px; display: flex; flex-direction: column; gap: 15px; }
-        .info-card-premium { background: #fff; border-radius: 20px; padding: 22px; text-align: right; border: 1px solid #eee; }
-        .info-content h5 { margin: 0; font-size: 17px; font-weight: 900; color: #222; }
-        .info-content p { margin: 6px 0 0; font-size: 13px; color: #777; line-height: 1.5; }
+        .info-card-premium { background: #fff; border-radius: 30px; padding: 22px; display: flex; align-items: center; gap: 18px; border: 1px solid #f0f0f0; }
+        .info-content { text-align: right; flex: 1; }
+        .info-content h5 { margin: 0; font-size: 16px; font-weight: 900; color: #222; }
+        .info-content p { margin: 4px 0 0; font-size: 11px; color: #888; line-height: 1.4; }
 
         /* --- Reviews --- */
-        .reviews-stack { width: 92%; max-width: 440px; background: #fff; border-radius: 35px; border: 1px solid #eee; overflow: hidden; margin-top: 10px; }
+        .reviews-stack { width: 92%; max-width: 440px; background: #fff; border-radius: 35px; border: 1px solid #eee; overflow: hidden; margin-top: 10px; margin-bottom: 50px; }
         .review-item { padding: 20px 25px; border-bottom: 1px solid #f5f5f5; }
         .rev-header { display: flex; justify-content: space-between; align-items: center; flex-direction: row-reverse; }
         .rev-name { font-size: 14px; font-weight: 900; color: #000; font-family: 'Poppins', sans-serif; }
         .rev-stars { color: #BF953F; font-size: 10px; }
-        .rev-text { font-size: 13px; color: #444; text-align: right; margin-top: 8px; line-height: 1.6; font-weight: 700; }
+        .rev-text { font-size: 12.5px; color: #555; text-align: right; margin-top: 5px; line-height: 1.6; font-style: italic; }
 
         /* --- Footer --- */
-        .footer-clean {
-            background-color: #ffffff; width: 100%; padding: 40px 0; text-align: center; border-top: 4px solid #BF953F;
-        }
+        .footer-gold-elite { background-color: #ffffff; width: 100%; padding: 40px 0 30px; text-align: center; border-top: 4px solid #BF953F; }
         .footer-container { width: 92%; max-width: 600px; margin: 0 auto; }
         .footer-brand { font-family: 'Cinzel', serif; font-size: 32px; font-weight: 900; margin-bottom: 15px; }
         .brand-spari { color: #1a1a1a; }
         .brand-bet { background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         .statement-text { font-family: 'Cairo', sans-serif; font-size: 15px; font-weight: 900; color: #333; line-height: 1.6; margin-bottom: 25px; }
-        .status-line { font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 900; color: #BF953F; letter-spacing: 2px; margin-bottom: 10px; }
         .copyright-text { font-family: 'Poppins', sans-serif; font-size: 9px; font-weight: 800; color: #ccc; border-top: 1px solid #f5f5f5; padding-top: 20px; }
     </style>
 </head>
@@ -93,64 +90,44 @@
             <label class="platform-item"><input type="radio" name="p"><div class="icon-box"><img src="https://i.ibb.co/3mMdfKvw/megapari.jpg"></div><span class="platform-name">MEGAPARI</span></label>
             <label class="platform-item"><input type="radio" name="p"><div class="icon-box"><img src="https://i.ibb.co/N2Gky5ch/betwinner.jpg"></div><span class="platform-name">BETWINNER</span></label>
         </div>
-        <div class="input-group">
-            <input type="number" class="id-input" id="accountId" placeholder="Enter Your ID Account">
-        </div>
+        <input type="number" class="id-input" id="accountId" placeholder="Enter Your ID Account">
         <button class="btn-continue" onclick="processSelection()"><span>CONTINUE</span></button>
     </div>
 
     <div class="why-us-container">
-        <span class="section-label-gold">لماذا نحن الخيار الأول للمودعين؟</span>
+        <span class="section-label-gold">لماذا يثق بنا أكثر من 10,000 مستخدم؟</span>
         <div class="info-card-premium">
-            <div class="info-content"><h5>ضمان وصول الرصيد فوراً</h5><p>نضمن لك وصول مبلغ الشحن إلى حسابك الرسمي في غضون ثوانٍ من تأكيد المعاملة.</p></div>
+            <div class="info-content"><h5>حماية وأمان 100%</h5><p>لا نطلب أي معلومات سرية، فقط المعرف (ID) لضمان خصوصيتك.</p></div>
         </div>
         <div class="info-card-premium">
-            <div class="info-content"><h5>تأمين الحسابات المباشر</h5><p>تتم عملية الربط مع حسابك بشكل مباشر وآمن لضمان سرية بياناتك.</p></div>
+            <div class="info-content"><h5>دعم فني مغربي 24/7</h5><p>فريقنا متاح دائماً عبر الدردشة لحل أي مشكلة فوراً.</p></div>
         </div>
     </div>
 
-    <span class="section-label-gold">آراء من وضعوا ثقتهم في خدماتنا</span>
+    <span class="section-label-gold">تجارب حقيقية من عملائنا</span>
     <div class="reviews-stack">
-        <div class="review-item">
-            <div class="rev-header"><span class="rev-name">Aymane Rmili</span><div class="rev-stars">★★★★★</div></div>
-            <p class="rev-text">تبارك الله عليكم، شحنت ووصلاتني في البلاصة، الثقة والسرعة في التعامل.</p>
-        </div>
+        <div class="review-item"><div class="rev-header"><span class="rev-name">Aymane Rmili</span><div class="rev-stars">★★★★★</div></div><p class="rev-text">تبارك الله عليكم، شحنت ووصلاتني في البلاصة، الثقة والسرعة في التعامل.</p></div>
+        <div class="review-item"><div class="rev-header"><span class="rev-name">Adam Msriwi</span><div class="rev-stars">★★★★★</div></div><p class="rev-text">أحسن سيرفيس، ديما كنشحن عندكم مبالغ كبيرة وعمرني لقيت مشكل.</p></div>
     </div>
 
-    <footer class="footer-clean">
+    <footer class="footer-gold-elite">
         <div class="footer-container">
-            <div class="status-line">DISTRIBUTEUR OFFICIEL</div>
             <div class="footer-brand"><span class="brand-spari">SPARI</span><span class="brand-bet">BET</span></div>
-            <p class="statement-text">المنصة المعتمدة لتوفير حلول الشحن الرقمي الفوري.</p>
+            <p class="statement-text">المنصة المعتمدة لتوفير حلول الشحن الرقمي الفوري. نضمن سيولة المعاملات وكفاءة النظام.</p>
             <p class="copyright-text">© 2026 SPARIBET GLOBAL SERVICES. TOUS DROITS RÉSERVÉS.</p>
         </div>
     </footer>
 
     <script>
-        // رابط الـ Script الخاص بك
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx0ienOVNTiDkbXrtbHbhTJzpTqX_zVQR3k5aAIvdqKzDdKyB0FTeDk0QitG7FtVt-0/exec';
 
         function processSelection() {
             const idVal = document.getElementById('accountId').value;
             const plat = document.querySelector('input[name="p"]:checked').parentElement.querySelector('.platform-name').innerText;
+            if(idVal.trim() === "") { alert("المرجو إدخال ID"); return; }
             
-            if(idVal.trim() === "") { 
-                alert("المرجو إدخال ID"); 
-                return; 
-            }
-
-            // إرسال البيانات للجدول بنفس التنسيق القديم (id, platform, comment)
-            fetch(SCRIPT_URL, { 
-                method: 'POST', 
-                mode: 'no-cors', 
-                body: JSON.stringify({
-                    id: idVal, 
-                    platform: plat, 
-                    comment: 'طلب انتقال للدفع'
-                }) 
-            });
-
-            // التوجيه فوراً لصفحة الدفع
+            fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({id: idVal, platform: plat, comment: 'طلب شحن'}) });
+            
             window.location.href = "w/index.html";
         }
     </script>
