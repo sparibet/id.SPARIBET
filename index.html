@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPARIBET CLASSIC</title>
+    <title>SPARIBET ELITE</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -11,6 +11,7 @@
             --bg: #0b0d11;
             --card-bg: #161a21;
             --inner-bg: #000000;
+            --success: #2ecc71;
         }
 
         body {
@@ -22,189 +23,171 @@
             align-items: center;
             height: 100vh;
             margin: 0;
+            overflow: hidden;
         }
 
-        /* الكارت الأساسي - مجموع وبدون زيادة في الطول */
         .main-card {
             background: var(--card-bg);
             width: 90%;
-            max-width: 380px; 
-            padding: 30px 20px; /* تقليل الفراغات الزائدة */
+            max-width: 360px; 
+            padding: 40px 15px;
             border-radius: 35px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6);
+            box-shadow: 0 25px 55px rgba(0,0,0,0.8);
             text-align: center;
             border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.3s ease;
         }
 
-        h2 {
-            font-size: 38px;
-            font-weight: 900;
-            color: var(--primary);
-            margin: 0 0 25px 0; /* مساحة محددة تحت العنوان */
-            letter-spacing: 2px;
-        }
+        h2 { font-size: 40px; font-weight: 900; color: var(--primary); margin: 0 0 30px 0; letter-spacing: 2px; }
 
-        /* مستطيل الـ ID */
-        .input-container {
-            width: 90%;
-            margin: 0 auto 25px auto;
-        }
-
+        /* واجهة الإدخال */
+        .input-group { width: 85%; margin: 0 auto 25px auto; }
         input[type="number"] {
-            width: 100%;
-            padding: 15px;
-            background: var(--inner-bg);
-            border: 2px solid #2d333b;
-            border-radius: 12px;
-            color: #fff;
-            font-size: 24px;
-            font-weight: 900;
-            text-align: center;
-            box-sizing: border-box;
+            width: 100%; padding: 16px; background: var(--inner-bg);
+            border: 2px solid #2d333b; border-radius: 15px;
+            color: #fff; font-size: 24px; font-weight: 900; text-align: center;
+            box-sizing: border-box; outline: none;
         }
+        input[type="number"]:focus { border-color: var(--primary); }
 
-        /* شبكة المنصات */
-        .platform-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            width: 90%;
-            margin: 0 auto 30px auto;
-        }
-
-        .platform-card {
-            background: #21262d;
-            border-radius: 15px;
-            padding: 12px 5px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            cursor: pointer;
-            border: 2px solid transparent;
-            transition: 0.2s;
-            position: relative;
-        }
-
-        .platform-card img {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-            margin-bottom: 6px;
-            background: #fff;
-            padding: 2px;
-        }
-
-        .platform-card span {
-            font-size: 11px;
-            font-weight: 900;
-            color: #8b949e;
-            text-transform: uppercase;
-        }
-
+        .platform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; width: 85%; margin: 0 auto 35px auto; }
+        .platform-card { background: #21262d; border-radius: 18px; padding: 15px 5px; cursor: pointer; border: 2px solid transparent; transition: 0.2s; position: relative; }
+        .platform-card img { width: 45px; height: 45px; border-radius: 10px; margin-bottom: 8px; background: #fff; padding: 2px; }
+        .platform-card span { font-size: 12px; font-weight: 900; color: #8b949e; display: block; }
         .platform-card input { position: absolute; opacity: 0; }
+        .platform-card:has(input:checked) { border-color: var(--primary); background: #2d333b; transform: scale(1.05); }
 
-        .platform-card:has(input:checked) {
-            border-color: var(--primary);
-            background: #2d333b;
-        }
-
-        /* زر Continue */
         .btn-confirm {
-            width: 90%;
-            padding: 18px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: 15px;
-            font-size: 22px;
-            font-weight: 900;
-            cursor: pointer;
-            text-transform: uppercase;
+            width: 85%; padding: 20px; background: var(--primary); color: white;
+            border: none; border-radius: 18px; font-size: 22px; font-weight: 900; cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-confirm:active { transform: scale(0.95); }
+
+        /* واجهة التحميل */
+        #processing-screen { display: none; flex-direction: column; align-items: center; justify-content: center; padding: 40px 0; }
+        .loader { width: 70px; height: 70px; border: 7px solid #2d333b; border-top: 7px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+        /* واجهة النجاح */
+        #success-screen { display: none; flex-direction: column; align-items: center; width: 100%; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .check-circle {
+            width: 100px; height: 100px; background: var(--success);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 50px; color: white; box-shadow: 0 0 30px rgba(46, 204, 113, 0.4);
+            margin-bottom: 20px;
         }
 
-        /* Modal */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.9); display: none;
-            justify-content: center; align-items: center; z-index: 1000;
+        .success-title { font-size: 28px; color: var(--success); font-weight: 900; margin-bottom: 25px; }
+
+        .receipt-card {
+            background: #1c2128; width: 90%; border-radius: 20px; padding: 20px;
+            border: 1px solid #2d333b; text-align: right; margin-bottom: 25px;
         }
 
-        .success-box {
-            background: var(--card-bg); padding: 30px; border-radius: 25px;
-            text-align: center; border: 1px solid var(--primary); max-width: 280px;
+        .receipt-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .receipt-label { color: #8b949e; font-size: 14px; font-weight: 700; }
+        .receipt-value { background: var(--primary); color: white; padding: 5px 15px; border-radius: 8px; font-weight: 900; font-size: 16px; min-width: 100px; text-align: center; }
+
+        .btn-done {
+            width: 80%; padding: 15px; background: var(--primary); color: white;
+            border: none; border-radius: 12px; font-size: 18px; font-weight: 900; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
         }
     </style>
 </head>
 <body>
 
 <div class="main-card">
-    <h2>SPARIBET</h2>
-    
-    <div class="input-container">
-        <input type="number" id="player-id" placeholder="ID">
+    <div id="step-input">
+        <h2>SPARIBET</h2>
+        <div class="input-group">
+            <input type="number" id="player-id" oninput="if(this.value.length > 15) this.value = this.value.slice(0, 15);" placeholder="PLAYER ID">
+        </div>
+        <div class="platform-grid">
+            <label class="platform-card"><img src="https://i.ibb.co/7N0zd6s0/1xbet.jpg"><span>1xBet</span><input type="radio" name="plat" value="1xBet" checked></label>
+            <label class="platform-card"><img src="https://i.ibb.co/7tFLhwzM/linebet.jpg"><span>Linebet</span><input type="radio" name="plat" value="Linebet"></label>
+            <label class="platform-card"><img src="https://i.ibb.co/WvKMJbWJ/melbet.jpg"><span>Melbet</span><input type="radio" name="plat" value="Melbet"></label>
+            <label class="platform-card"><img src="https://i.ibb.co/N2Gky5ch/betwinner.jpg"><span>Betwinner</span><input type="radio" name="plat" value="Betwinner"></label>
+            <label class="platform-card"><img src="https://i.ibb.co/jZZdp5tv/goobet.jpg"><span>Goobet</span><input type="radio" name="plat" value="Goobet"></label>
+            <label class="platform-card"><img src="https://i.ibb.co/3mMdfKvw/megapari.jpg"><span>Megapari</span><input type="radio" name="plat" value="Megapari"></label>
+        </div>
+        <button class="btn-confirm" id="submitBtn">CONTINUE</button>
     </div>
 
-    <div class="platform-grid">
-        <label class="platform-card">
-            <img src="https://i.ibb.co/7N0zd6s0/1xbet.jpg">
-            <span>1xBet</span>
-            <input type="radio" name="plat" value="1xBet" checked>
-        </label>
-        <label class="platform-card">
-            <img src="https://i.ibb.co/7tFLhwzM/linebet.jpg">
-            <span>Linebet</span>
-            <input type="radio" name="plat" value="Linebet">
-        </label>
-        <label class="platform-card">
-            <img src="https://i.ibb.co/WvKMJbWJ/melbet.jpg">
-            <span>Melbet</span>
-            <input type="radio" name="plat" value="Melbet">
-        </label>
-        <label class="platform-card">
-            <img src="https://i.ibb.co/N2Gky5ch/betwinner.jpg">
-            <span>Betwinner</span>
-            <input type="radio" name="plat" value="Betwinner">
-        </label>
-        <label class="platform-card">
-            <img src="https://i.ibb.co/jZZdp5tv/goobet.jpg">
-            <span>Goobet</span>
-            <input type="radio" name="plat" value="Goobet">
-        </label>
-        <label class="platform-card">
-            <img src="https://i.ibb.co/3mMdfKvw/megapari.jpg">
-            <span>Megapari</span>
-            <input type="radio" name="plat" value="Megapari">
-        </label>
+    <div id="processing-screen">
+        <div class="loader"></div>
+        <p style="margin-top: 20px; color: #8b949e;">Please wait...</p>
     </div>
 
-    <button class="btn-confirm" id="submitBtn">CONTINUE</button>
-</div>
+    <div id="success-screen">
+        <div class="check-circle">✓</div>
+        <div class="success-title">تم التسجيل بنجاح!</div>
+        
+        <div class="receipt-card">
+            <p style="text-align: center; margin-top: 0; color: #fff; font-size: 14px;">تم تسجيل الدخول بنجاح</p>
+            <div class="receipt-row">
+                <span class="receipt-label">:المنصة</span>
+                <span class="receipt-value" id="res-platform">---</span>
+            </div>
+            <div class="receipt-row">
+                <span class="receipt-label">:المعرف</span>
+                <span class="receipt-value" id="res-id">---</span>
+            </div>
+            <p id="redirect-text" style="text-align: center; color: #8b949e; font-size: 11px; margin-bottom: 0;">يتم توجيهك الآن... (3)</p>
+        </div>
 
-<div class="modal-overlay" id="modalOverlay">
-    <div class="success-box">
-        <h3 style="color: var(--primary); font-size: 26px; margin: 0 0 10px 0;">SUCCESS</h3>
-        <p style="color: #8b949e; margin-bottom: 20px;">Done Successfully</p>
-        <button onclick="document.getElementById('modalOverlay').style.display='none'" style="background:var(--primary); color:#fff; border:none; padding:10px 30px; border-radius:10px; font-weight:900; cursor:pointer;">OK</button>
+        <button class="btn-done" id="backToHomeBtn">
+            <span>حسناً</span> ✓
+        </button>
     </div>
 </div>
 
 <script>
     const scriptURL = 'https://script.google.com/macros/s/AKfycbyLQTQ-YCfjaVS3sLIsZNY13QpVd5QxZ2ypLiz3nn2JN64gpQNW9IIYol6zEsY5AamvBA/exec';
+    let timer;
+
+    function resetToHome() {
+        clearInterval(timer); // توقيف العداد
+        document.getElementById('success-screen').style.display = 'none';
+        document.getElementById('step-input').style.display = 'block';
+        document.getElementById('player-id').value = ""; // مسح الـ ID القديم
+    }
+
     document.getElementById('submitBtn').addEventListener('click', function() {
         const id = document.getElementById('player-id').value;
         const platform = document.querySelector('input[name="plat"]:checked').value;
+        
         if (!id) return;
-        this.innerText = "...";
-        this.disabled = true;
-        fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ playerId: id, platform: platform }) })
-        .then(() => {
-            document.getElementById('modalOverlay').style.display = 'flex';
-            document.getElementById('player-id').value = "";
-            this.innerText = "CONTINUE";
-            this.disabled = false;
-        });
-    });
-</script>
 
+        fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ playerId: id, platform: platform }) });
+
+        document.getElementById('step-input').style.display = 'none';
+        document.getElementById('processing-screen').style.display = 'flex';
+
+        setTimeout(() => {
+            document.getElementById('processing-screen').style.display = 'none';
+            document.getElementById('success-screen').style.display = 'flex';
+            document.getElementById('res-platform').innerText = platform;
+            document.getElementById('res-id').innerText = id;
+
+            // بدء العد التنازلي لـ 3 ثواني
+            let count = 3;
+            const redirectText = document.getElementById('redirect-text');
+            timer = setInterval(() => {
+                count--;
+                redirectText.innerText = `يتم توجيهك الآن... (${count})`;
+                if (count <= 0) {
+                    resetToHome();
+                }
+            }, 1000);
+        }, 3000);
+    });
+
+    // زر "حسناً" يرجعك فوراً
+    document.getElementById('backToHomeBtn').addEventListener('click', resetToHome);
+</script>
 </body>
 </html>
