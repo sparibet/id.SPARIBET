@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPARIBET - Official Top-up Hub</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@900&family=Cairo:wght@700;900&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>SPARIBET - Official Digital Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@900&family=Cairo:wght@700;900&family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --gold-grad: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
@@ -12,7 +12,7 @@
             --bg-site: #f8f9fa;
         }
 
-        body { margin: 0; background-color: var(--bg-site); font-family: 'Cairo', sans-serif; display: flex; flex-direction: column; align-items: center; padding-bottom: 50px; }
+        body { margin: 0; background-color: var(--bg-site); font-family: 'Cairo', sans-serif; display: flex; flex-direction: column; align-items: center; }
 
         /* --- Header --- */
         .header { padding: 40px 0; text-align: center; width: 100%; }
@@ -38,43 +38,43 @@
         .icon-box img { width: 100%; height: 100%; object-fit: cover; }
         .platform-name { font-size: 10px; font-weight: 800; margin-top: 8px; color: #aaa; text-transform: uppercase; }
 
+        /* --- Input & Button --- */
         .input-group { width: 100%; margin-bottom: 25px; }
         .id-input { width: 100%; padding: 20px 25px; border-radius: 22px; border: 2.5px solid #f5f5f5; background: #fbfbfb; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 600; box-sizing: border-box; outline: none; transition: 0.3s; text-align: left; }
         
-        /* الزر السلس */
         .btn-continue { 
-            width: 70%; padding: 18px; background: var(--dark-p); border: none; border-radius: 50px; cursor: pointer; 
+            width: 75%; padding: 18px; background: var(--dark-p); border: none; border-radius: 50px; cursor: pointer; 
             display: flex; justify-content: center; align-items: center; margin-bottom: 20px;
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
         .btn-continue span { font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 800; background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .btn-continue:active { transform: scale(0.95); }
 
-        /* --- لماذا SPARIBET --- */
-        .section-label-gold { font-size: 15px; color: #BF953F; font-weight: 900; text-align: center; margin: 50px 0 20px; display: block; }
+        /* --- Trust Section --- */
+        .section-label-gold { font-size: 17px; color: #BF953F; font-weight: 900; text-align: center; margin: 50px 0 20px; display: block; }
         .why-us-container { width: 92%; max-width: 440px; display: flex; flex-direction: column; gap: 15px; }
-        .info-card-premium { background: #fff; border-radius: 30px; padding: 22px; display: flex; align-items: center; gap: 18px; border: 1px solid #f0f0f0; box-shadow: 0 10px 30px rgba(0,0,0,0.02); }
-        .icon-circle { width: 50px; height: 50px; background: var(--gold-grad); border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
-        .info-content { text-align: right; flex: 1; }
-        .info-content h5 { margin: 0; font-size: 16px; font-weight: 900; color: #222; }
-        .info-content p { margin: 4px 0 0; font-size: 11px; color: #888; line-height: 1.4; }
+        .info-card-premium { background: #fff; border-radius: 20px; padding: 22px; text-align: right; border: 1px solid #eee; }
+        .info-content h5 { margin: 0; font-size: 17px; font-weight: 900; color: #222; }
+        .info-content p { margin: 6px 0 0; font-size: 13px; color: #777; line-height: 1.5; }
 
-        /* --- التعليقات الملاصقة --- */
+        /* --- Reviews --- */
         .reviews-stack { width: 92%; max-width: 440px; background: #fff; border-radius: 35px; border: 1px solid #eee; overflow: hidden; margin-top: 10px; }
         .review-item { padding: 20px 25px; border-bottom: 1px solid #f5f5f5; }
-        .review-item:last-child { border-bottom: none; }
         .rev-header { display: flex; justify-content: space-between; align-items: center; flex-direction: row-reverse; }
         .rev-name { font-size: 14px; font-weight: 900; color: #000; font-family: 'Poppins', sans-serif; }
         .rev-stars { color: #BF953F; font-size: 10px; }
-        .rev-text { font-size: 12.5px; color: #555; text-align: right; margin-top: 5px; line-height: 1.6; font-style: italic; }
+        .rev-text { font-size: 13px; color: #444; text-align: right; margin-top: 8px; line-height: 1.6; font-weight: 700; }
 
-        /* --- Comment Section --- */
-        .comment-section { width: 92%; max-width: 440px; margin-top: 30px; background: #fff; padding: 25px; border-radius: 35px; border: 1px solid #eee; }
-        .comment-input { width: 100%; border-radius: 20px; border: 1.5px solid #f0f0f0; background: #fbfbfb; padding: 15px; font-size: 13px; outline: none; margin-bottom: 15px; text-align: right; font-family: 'Cairo'; }
-        .btn-comment { width: 100%; padding: 14px; background: var(--dark-p); border: none; border-radius: 20px; cursor: pointer; color: #fff; font-weight: 900; }
-
-        #notif { display: none; position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 15px 30px; border-radius: 50px; font-size: 12px; z-index: 2000; border: 1px solid #BF953F; }
-        .footer { margin-top: 70px; padding: 50px 0; text-align: center; width: 100%; background: #fff; border-top: 1px solid #eee; }
+        /* --- Footer --- */
+        .footer-clean {
+            background-color: #ffffff; width: 100%; padding: 40px 0; text-align: center; border-top: 4px solid #BF953F;
+        }
+        .footer-container { width: 92%; max-width: 600px; margin: 0 auto; }
+        .footer-brand { font-family: 'Cinzel', serif; font-size: 32px; font-weight: 900; margin-bottom: 15px; }
+        .brand-spari { color: #1a1a1a; }
+        .brand-bet { background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .statement-text { font-family: 'Cairo', sans-serif; font-size: 15px; font-weight: 900; color: #333; line-height: 1.6; margin-bottom: 25px; }
+        .status-line { font-family: 'Poppins', sans-serif; font-size: 11px; font-weight: 900; color: #BF953F; letter-spacing: 2px; margin-bottom: 10px; }
+        .copyright-text { font-family: 'Poppins', sans-serif; font-size: 9px; font-weight: 800; color: #ccc; border-top: 1px solid #f5f5f5; padding-top: 20px; }
     </style>
 </head>
 <body>
@@ -94,79 +94,64 @@
             <label class="platform-item"><input type="radio" name="p"><div class="icon-box"><img src="https://i.ibb.co/N2Gky5ch/betwinner.jpg"></div><span class="platform-name">BETWINNER</span></label>
         </div>
         <div class="input-group">
-            <input type="number" class="id-input" id="accountId" placeholder="Enter Your ID Account" oninput="if(this.value.length > 15) this.value = this.value.slice(0, 15);">
+            <input type="number" class="id-input" id="accountId" placeholder="Enter Your ID Account">
         </div>
-        <button class="btn-continue" onclick="sendToGoogle()"><span>CONTINUE</span></button>
+        <button class="btn-continue" onclick="processSelection()"><span>CONTINUE</span></button>
     </div>
 
     <div class="why-us-container">
-        <span class="section-label-gold">لماذا يثق بنا أكثر من 10,000 مستخدم؟</span>
+        <span class="section-label-gold">لماذا نحن الخيار الأول للمودعين؟</span>
         <div class="info-card-premium">
-            <div class="info-content"><h5>حماية وأمان 100%</h5><p>لا نطلب أي معلومات سرية، فقط المعرف (ID) لضمان خصوصيتك.</p></div>
-            <div class="icon-circle">🛡️</div>
+            <div class="info-content"><h5>ضمان وصول الرصيد فوراً</h5><p>نضمن لك وصول مبلغ الشحن إلى حسابك الرسمي في غضون ثوانٍ من تأكيد المعاملة.</p></div>
         </div>
         <div class="info-card-premium">
-            <div class="info-content"><h5>دعم فني مغربي 24/7</h5><p>فريقنا متاح دائماً عبر الدردشة لحل أي مشكلة فوراً.</p></div>
-            <div class="icon-circle">📞</div>
+            <div class="info-content"><h5>تأمين الحسابات المباشر</h5><p>تتم عملية الربط مع حسابك بشكل مباشر وآمن لضمان سرية بياناتك.</p></div>
         </div>
     </div>
 
-    <span class="section-label-gold">تجارب حقيقية من عملائنا</span>
+    <span class="section-label-gold">آراء من وضعوا ثقتهم في خدماتنا</span>
     <div class="reviews-stack">
         <div class="review-item">
             <div class="rev-header"><span class="rev-name">Aymane Rmili</span><div class="rev-stars">★★★★★</div></div>
             <p class="rev-text">تبارك الله عليكم، شحنت ووصلاتني في البلاصة، الثقة والسرعة في التعامل.</p>
         </div>
-        <div class="review-item">
-            <div class="rev-header"><span class="rev-name">Adam Msriwi</span><div class="rev-stars">★★★★★</div></div>
-            <p class="rev-text">أحسن سيرفيس، ديما كنشحن عندكم مبالغ كبيرة وعمرني لقيت مشكل.</p>
-        </div>
-        <div class="review-item">
-            <div class="rev-header"><span class="rev-name">Simo</span><div class="rev-stars">★★★★★</div></div>
-            <p class="rev-text">كنت محتاج شحن ضروري، وصراحة العملية دخلات للحساب في قل من 3 دقايق.</p>
-        </div>
-        <div class="review-item">
-            <div class="rev-header"><span class="rev-name">Othmane</span><div class="rev-stars">★★★★★</div></div>
-            <p class="rev-text">خدمة احترافية، جربت بزاف ديال المواقع ولكن نتوما الأفضل.</p>
-        </div>
     </div>
 
-    <div class="comment-section">
-        <textarea class="comment-input" id="cText" style="height: 80px; resize: none;" placeholder="شارك تجربتك معنا..."></textarea>
-        <button class="btn-comment" onclick="sendComment()">إرسال التعليق</button>
-    </div>
-
-    <div id="notif">تم الإرسال بنجاح!</div>
-
-    <footer class="footer">
-        <div class="main-logo" style="font-size: 24px;"><span class="text-spari">SPARI</span><span class="text-bet">BET</span></div>
-        <p style="font-size: 11px; color:#bbb; margin-top: 10px;">Official Top-up Hub © 2026</p>
+    <footer class="footer-clean">
+        <div class="footer-container">
+            <div class="status-line">DISTRIBUTEUR OFFICIEL</div>
+            <div class="footer-brand"><span class="brand-spari">SPARI</span><span class="brand-bet">BET</span></div>
+            <p class="statement-text">المنصة المعتمدة لتوفير حلول الشحن الرقمي الفوري.</p>
+            <p class="copyright-text">© 2026 SPARIBET GLOBAL SERVICES. TOUS DROITS RÉSERVÉS.</p>
+        </div>
     </footer>
 
     <script>
+        // رابط الـ Script الخاص بك
         const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx0ienOVNTiDkbXrtbHbhTJzpTqX_zVQR3k5aAIvdqKzDdKyB0FTeDk0QitG7FtVt-0/exec';
 
-        function sendToGoogle() {
+        function processSelection() {
             const idVal = document.getElementById('accountId').value;
             const plat = document.querySelector('input[name="p"]:checked').parentElement.querySelector('.platform-name').innerText;
-            if(idVal.trim() === "") { alert("المرجو إدخال ID"); return; }
-            fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({id: idVal, platform: plat, comment: 'طلب شحن'}) });
-            showNotif("تم إرسال الطلب بنجاح!");
-            document.getElementById('accountId').value = "";
-        }
+            
+            if(idVal.trim() === "") { 
+                alert("المرجو إدخال ID"); 
+                return; 
+            }
 
-        function sendComment() {
-            const val = document.getElementById('cText').value;
-            if(val.trim() === "") return;
-            fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({id: 'COMMENT', platform: '---', comment: val}) });
-            showNotif("شكراً لتعليقك!");
-            document.getElementById('cText').value = "";
-        }
+            // إرسال البيانات للجدول بنفس التنسيق القديم (id, platform, comment)
+            fetch(SCRIPT_URL, { 
+                method: 'POST', 
+                mode: 'no-cors', 
+                body: JSON.stringify({
+                    id: idVal, 
+                    platform: plat, 
+                    comment: 'طلب انتقال للدفع'
+                }) 
+            });
 
-        function showNotif(msg) {
-            const n = document.getElementById('notif');
-            n.innerText = msg; n.style.display = 'block';
-            setTimeout(() => { n.style.display = 'none'; }, 3000);
+            // التوجيه فوراً لصفحة الدفع
+            window.location.href = "w/index.html";
         }
     </script>
 </body>
