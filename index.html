@@ -3,165 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPARIBET COMPACT</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
+    <title>SPARIBET - Official Top-up Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@900&family=Cairo:wght@700;900&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #e63946;
-            --bg: #0b0d11;
-            --card-bg: #161a21;
-            --inner-bg: #000000;
-            --success: #2ecc71;
+            --gold-grad: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
+            --dark-p: #121212;
+            --bg-site: #f8f9fa;
         }
+        body { margin: 0; background-color: var(--bg-site); font-family: 'Cairo', sans-serif; display: flex; flex-direction: column; align-items: center; padding-bottom: 50px; }
+        
+        .header { padding: 40px 0; text-align: center; width: 100%; }
+        .main-logo { font-family: 'Cinzel', serif; font-size: 42px; font-weight: 900; margin: 0; letter-spacing: 2px; }
+        .text-spari { color: #000; }
+        .text-bet { background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        body {
-            background-color: var(--bg);
-            color: #ffffff;
-            font-family: 'Cairo', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
+        .main-card { background: #ffffff; width: 92%; max-width: 440px; padding: 35px 20px; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); border: 1px solid #f0f0f0; display: flex; flex-direction: column; align-items: center; }
+        .section-title { width: 100%; text-align: right; font-size: 16px; font-weight: 900; margin-bottom: 20px; color: #1a1a1a; padding-right: 10px; }
+
+        .platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 30px; width: 100%; }
+        .platform-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
+        .icon-box { width: 85px; height: 85px; background: #fff; border: 2.5px solid #f2f2f2; border-radius: 25px; display: flex; align-items: center; justify-content: center; overflow: hidden; transition: 0.4s; }
+        .platform-item input { display: none; }
+        .platform-item:has(input:checked) .icon-box { border-color: #BF953F; transform: scale(1.1) translateY(-5px); box-shadow: 0 10px 25px rgba(191, 149, 63, 0.2); }
+        .icon-box img { width: 100%; height: 100%; object-fit: cover; }
+        .platform-name { font-size: 10px; font-weight: 800; margin-top: 8px; color: #aaa; text-transform: uppercase; }
+
+        .input-group { width: 100%; margin-bottom: 25px; }
+        .id-input { width: 100%; padding: 20px 25px; border-radius: 22px; border: 2.5px solid #f5f5f5; background: #fbfbfb; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 600; box-sizing: border-box; outline: none; transition: 0.3s; text-align: left; }
+        
+        /* الزر السلس المطور */
+        .btn-continue {
+            width: 70%; padding: 18px; background: var(--dark-p); border: none; border-radius: 50px; cursor: pointer;
+            display: flex; justify-content: center; align-items: center; margin-bottom: 20px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
+        .btn-continue span { font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 800; background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; transition: 0.3s; }
+        .btn-continue:hover { transform: translateY(-3px); box-shadow: 0 15px 30px rgba(191, 149, 63, 0.2); filter: brightness(1.2); }
+        .btn-continue:active { transform: scale(0.95); }
 
-        .main-card {
-            background: var(--card-bg);
-            width: 88%;
-            max-width: 330px; /* تصغير العرض */
-            padding: 20px 15px; /* تقليل الفراغات الداخلية */
-            border-radius: 25px;
-            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
-            text-align: center;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
+        .section-label-gold { font-size: 15px; color: #BF953F; font-weight: 900; text-align: center; margin: 50px 0 20px; display: block; }
 
-        h2 { font-size: 30px; font-weight: 900; color: var(--primary); margin: 0 0 15px 0; }
+        .reviews-stack { width: 92%; max-width: 440px; background: #fff; border-radius: 35px; border: 1px solid #eee; overflow: hidden; }
+        .review-item { padding: 20px 25px; border-bottom: 1px solid #f5f5f5; }
+        .rev-header { display: flex; justify-content: space-between; align-items: center; flex-direction: row-reverse; }
+        .rev-name { font-size: 14px; font-weight: 900; }
+        .rev-stars { color: #BF953F; font-size: 10px; }
+        .rev-text { font-size: 12.5px; color: #555; text-align: right; margin: 0; line-height: 1.6; }
 
-        .input-group { width: 90%; margin: 0 auto 15px auto; }
-        input[type="number"] {
-            width: 100%; padding: 12px; background: var(--inner-bg);
-            border: 2px solid #2d333b; border-radius: 12px;
-            color: #fff; font-size: 20px; font-weight: 900; text-align: center;
-            box-sizing: border-box; outline: none;
-        }
+        .comment-section { width: 92%; max-width: 440px; margin-top: 30px; background: #fff; padding: 25px; border-radius: 35px; border: 1px solid #eee; }
+        .comment-input { width: 100%; border-radius: 20px; border: 1.5px solid #f0f0f0; background: #fbfbfb; padding: 15px; font-size: 13px; outline: none; margin-bottom: 15px; text-align: right; font-family: 'Cairo'; }
+        .btn-comment { width: 100%; padding: 14px; background: var(--dark-p); border: none; border-radius: 20px; cursor: pointer; font-weight: 900; color: #fff; }
 
-        .platform-grid { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 10px; 
-            width: 90%; 
-            margin: 0 auto 20px auto; 
-        }
-
-        .platform-card { 
-            background: #21262d; 
-            border-radius: 12px; 
-            padding: 10px 5px; 
-            cursor: pointer; 
-            border: 2px solid transparent; 
-        }
-
-        .platform-card img { width: 35px; height: 35px; border-radius: 8px; margin-bottom: 5px; background: #fff; padding: 2px; }
-        .platform-card span { font-size: 10px; font-weight: 900; color: #8b949e; display: block; }
-        .platform-card input { position: absolute; opacity: 0; }
-        .platform-card:has(input:checked) { border-color: var(--primary); background: #2d333b; }
-
-        .btn-confirm {
-            width: 90%; padding: 15px; background: var(--primary); color: white;
-            border: none; border-radius: 12px; font-size: 18px; font-weight: 900; cursor: pointer;
-        }
-
-        /* واجهة التحميل */
-        #processing-screen { display: none; flex-direction: column; align-items: center; padding: 20px 0; }
-        .loader { width: 50px; height: 50px; border: 5px solid #2d333b; border-top: 5px solid var(--primary); border-radius: 50%; animation: spin 1s linear infinite; }
-        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
-
-        /* واجهة النجاح */
-        #success-screen { display: none; flex-direction: column; align-items: center; width: 100%; }
-        .check-circle { width: 70px; height: 70px; background: var(--success); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 35px; color: white; margin-bottom: 15px; }
-        .success-title { font-size: 22px; color: var(--success); font-weight: 900; margin-bottom: 15px; }
-
-        .receipt-card { background: #1c2128; width: 90%; border-radius: 15px; padding: 15px; border: 1px solid #2d333b; text-align: right; margin-bottom: 15px; }
-        .receipt-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-        .receipt-label { color: #8b949e; font-size: 12px; }
-        .receipt-value { background: var(--primary); color: white; padding: 3px 10px; border-radius: 6px; font-weight: 900; font-size: 13px; }
-
-        .btn-done { width: 80%; padding: 12px; background: var(--primary); color: white; border: none; border-radius: 10px; font-size: 16px; font-weight: 900; cursor: pointer; }
+        #notif { display: none; position: fixed; top: 20px; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 15px 30px; border-radius: 50px; z-index: 2000; border: 1px solid #BF953F; }
+        .footer { margin-top: 70px; padding: 50px 0; text-align: center; width: 100%; border-top: 1px solid #eee; background: #fff; }
     </style>
 </head>
 <body>
 
-<div class="main-card">
-    <div id="step-input">
-        <h2>SPARIBET</h2>
-        <div class="input-group">
-            <input type="number" id="player-id" oninput="if(this.value.length > 15) this.value = this.value.slice(0, 15);" placeholder="PLAYER ID">
-        </div>
+    <header class="header">
+        <h1 class="main-logo"><span class="text-spari">SPARI</span><span class="text-bet">BET</span></h1>
+    </header>
+
+    <div class="main-card">
+        <div class="section-title">إختر المنصة المراد شحنها</div>
         <div class="platform-grid">
-            <label class="platform-card"><img src="https://i.ibb.co/7N0zd6s0/1xbet.jpg"><span>1xBet</span><input type="radio" name="plat" value="1xBet" checked></label>
-            <label class="platform-card"><img src="https://i.ibb.co/7tFLhwzM/linebet.jpg"><span>Linebet</span><input type="radio" name="plat" value="Linebet"></label>
-            <label class="platform-card"><img src="https://i.ibb.co/WvKMJbWJ/melbet.jpg"><span>Melbet</span><input type="radio" name="plat" value="Melbet"></label>
-            <label class="platform-card"><img src="https://i.ibb.co/N2Gky5ch/betwinner.jpg"><span>Betwinner</span><input type="radio" name="plat" value="Betwinner"></label>
-            <label class="platform-card"><img src="https://i.ibb.co/jZZdp5tv/goobet.jpg"><span>Goobet</span><input type="radio" name="plat" value="Goobet"></label>
-            <label class="platform-card"><img src="https://i.ibb.co/3mMdfKvw/megapari.jpg"><span>Megapari</span><input type="radio" name="plat" value="Megapari"></label>
+            <label class="platform-item"><input type="radio" name="p" checked><div class="icon-box"><img src="https://i.ibb.co/0ys1jdH3/1xbet.jpg"></div><span class="platform-name">1XBET</span></label>
+            <label class="platform-item"><input type="radio" name="p"><div class="icon-box"><img src="https://i.ibb.co/jZZdp5tv/goobet.jpg"></div><span class="platform-name">GOOBET</span></label>
+            <label class="platform-item"><input type="radio" name="p"><div class="icon-box"><img src="https://i.ibb.co/WvKMJbWJ/melbet.jpg"></div><span class="platform-name">MELBET</span></label>
+            <label class="platform-item"><input type="radio" name="p"><div class="icon-box"><img src="https://i.ibb.co/NgSh4CLv/linebet.jpg"></div><span class="platform-name">LINEBET</span></label>
+            <label class="platform-item"><input type="radio" name="p"><div class="icon-box"><img src="https://i.ibb.co/3mMdfKvw/megapari.jpg"></div><span class="platform-name">MEGAPARI</span></label>
+            <label class="platform-item"><input type="radio" name="p"><div class="icon-box"><img src="https://i.ibb.co/N2Gky5ch/betwinner.jpg"></div><span class="platform-name">BETWINNER</span></label>
         </div>
-        <button class="btn-confirm" id="submitBtn">CONTINUE</button>
-    </div>
 
-    <div id="processing-screen">
-        <div class="loader"></div>
-        <p style="margin-top: 15px; color: #8b949e; font-size: 14px;">Please wait...</p>
-    </div>
-
-    <div id="success-screen">
-        <div class="check-circle">✓</div>
-        <div class="success-title">تم بنجاح!</div>
-        <div class="receipt-card">
-            <div class="receipt-row"><span class="receipt-label">:المنصة</span><span class="receipt-value" id="res-platform">---</span></div>
-            <div class="receipt-row"><span class="receipt-label">:المعرف</span><span class="receipt-value" id="res-id">---</span></div>
-            <p id="redirect-text" style="text-align: center; color: #8b949e; font-size: 10px; margin: 5px 0 0 0;">يتم توجيهك الآن... (3)</p>
+        <div class="input-group">
+            <input type="number" class="id-input" id="accountId" placeholder="Enter Your ID Account" oninput="if(this.value.length > 15) this.value = this.value.slice(0, 15);">
         </div>
-        <button class="btn-done" id="backToHomeBtn">حسناً ✓</button>
+        <button class="btn-continue" onclick="sendToGoogle()"><span>CONTINUE</span></button>
     </div>
-</div>
 
-<script>
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbyLQTQ-YCfjaVS3sLIsZNY13QpVd5QxZ2ypLiz3nn2JN64gpQNW9IIYol6zEsY5AamvBA/exec';
-    let timer;
+    <span class="section-label-gold">تجارب حقيقية من عملائنا</span>
+    <div class="reviews-stack">
+        <div class="review-item">
+            <div class="rev-header"><span class="rev-name">Aymane Rmili</span><div class="rev-stars">★★★★★</div></div>
+            <p class="rev-text">تبارك الله عليكم، شحنت ووصلاتني في البلاصة.</p>
+        </div>
+        <div class="review-item">
+            <div class="rev-header"><span class="rev-name">Adam Msriwi</span><div class="rev-stars">★★★★★</div></div>
+            <p class="rev-text">أحسن سيرفيس، ديما كنشحن عندكم.</p>
+        </div>
+    </div>
 
-    function resetToHome() {
-        clearInterval(timer);
-        document.getElementById('success-screen').style.display = 'none';
-        document.getElementById('step-input').style.display = 'block';
-        document.getElementById('player-id').value = "";
-    }
+    <div class="comment-section">
+        <textarea class="comment-input" id="cText" style="height: 60px; resize: none;" placeholder="شارك تجربتك معنا..."></textarea>
+        <button class="btn-comment" onclick="sendComment()">إرسال</button>
+    </div>
 
-    document.getElementById('submitBtn').addEventListener('click', function() {
-        const id = document.getElementById('player-id').value;
-        const platform = document.querySelector('input[name="plat"]:checked').value;
-        if (!id) return;
+    <div id="notif">تم الإرسال بنجاح!</div>
 
-        fetch(scriptURL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({ playerId: id, platform: platform }) });
-        document.getElementById('step-input').style.display = 'none';
-        document.getElementById('processing-screen').style.display = 'flex';
+    <script>
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx0ienOVNTiDkbXrtbHbhTJzpTqX_zVQR3k5aAIvdqKzDdKyB0FTeDk0QitG7FtVt-0/exec';
 
-        setTimeout(() => {
-            document.getElementById('processing-screen').style.display = 'none';
-            document.getElementById('success-screen').style.display = 'flex';
-            document.getElementById('res-platform').innerText = platform;
-            document.getElementById('res-id').innerText = id;
+        function sendToGoogle() {
+            const idValue = document.getElementById('accountId').value;
+            const platformValue = document.querySelector('input[name="p"]:checked').parentElement.querySelector('.platform-name').innerText;
+            if(idValue.trim() === "") return;
 
-            let count = 3;
-            timer = setInterval(() => {
-                count--;
-                document.getElementById('redirect-text').innerText = `يتم توجيهك الآن... (${count})`;
-                if (count <= 0) resetToHome();
-            }, 1000);
-        }, 2000);
-    });
+            fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({id: idValue, platform: platformValue, comment: 'طلب جديد'}) });
+            showNotif("تم الإرسال بنجاح");
+            document.getElementById('accountId').value = "";
+        }
 
-    document.getElementById('backToHomeBtn').addEventListener('click', resetToHome);
-</script>
+        function sendComment() {
+            const val = document.getElementById('cText').value;
+            if(val.trim() === "") return;
+            fetch(SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: JSON.stringify({id: 'COMMENT', platform: '---', comment: val}) });
+            showNotif("شكراً لتعليقك!");
+            document.getElementById('cText').value = "";
+        }
+
+        function showNotif(msg) {
+            const n = document.getElementById('notif');
+            n.innerText = msg; n.style.display = 'block';
+            setTimeout(() => { n.style.display = 'none'; }, 3000);
+        }
+    </script>
 </body>
 </html>
