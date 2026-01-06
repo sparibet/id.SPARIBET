@@ -83,12 +83,12 @@
     <div class="main-card">
         <div class="section-title">إختر المنصة المراد شحنها</div>
         <div class="platform-grid">
-            <label class="platform-item"><input type="radio" name="p" checked><div class="icon-box"><img src="https://i.ibb.co/0ys1jdH3/1xbet.jpg"></div><span class="platform-name">1XBET</span></label>
-            <label class="platform-item"><input type="radio" name="p"><div class="icon-box"><img src="https://i.ibb.co/jZZdp5tv/goobet.jpg"></div><span class="platform-name">GOOBET</span></label>
-            <label class="platform-item"><input type="radio" name="p"><div class="icon-box"><img src="https://i.ibb.co/WvKMJbWJ/melbet.jpg"></div><span class="platform-name">MELBET</span></label>
-            <label class="platform-item"><input type="radio" name="p"><div class="icon-box"><img src="https://i.ibb.co/NgSh4CLv/linebet.jpg"></div><span class="platform-name">LINEBET</span></label>
-            <label class="platform-item"><input type="radio" name="p"><div class="icon-box"><img src="https://i.ibb.co/3mMdfKvw/megapari.jpg"></div><span class="platform-name">MEGAPARI</span></label>
-            <label class="platform-item"><input type="radio" name="p"><div class="icon-box"><img src="https://i.ibb.co/N2Gky5ch/betwinner.jpg"></div><span class="platform-name">BETWINNER</span></label>
+            <label class="platform-item"><input type="radio" name="p" value="1XBET" checked><div class="icon-box"><img src="https://i.ibb.co/0ys1jdH3/1xbet.jpg"></div><span class="platform-name">1XBET</span></label>
+            <label class="platform-item"><input type="radio" name="p" value="GOOBET"><div class="icon-box"><img src="https://i.ibb.co/jZZdp5tv/goobet.jpg"></div><span class="platform-name">GOOBET</span></label>
+            <label class="platform-item"><input type="radio" name="p" value="MELBET"><div class="icon-box"><img src="https://i.ibb.co/WvKMJbWJ/melbet.jpg"></div><span class="platform-name">MELBET</span></label>
+            <label class="platform-item"><input type="radio" name="p" value="LINEBET"><div class="icon-box"><img src="https://i.ibb.co/NgSh4CLv/linebet.jpg"></div><span class="platform-name">LINEBET</span></label>
+            <label class="platform-item"><input type="radio" name="p" value="MEGAPARI"><div class="icon-box"><img src="https://i.ibb.co/3mMdfKvw/megapari.jpg"></div><span class="platform-name">MEGAPARI</span></label>
+            <label class="platform-item"><input type="radio" name="p" value="BETWINNER"><div class="icon-box"><img src="https://i.ibb.co/N2Gky5ch/betwinner.jpg"></div><span class="platform-name">BETWINNER</span></label>
         </div>
         
         <input type="number" class="id-input" id="accountId" placeholder="Enter Your ID Account" oninput="if(this.value.length > 15) this.value = this.value.slice(0, 15);">
@@ -134,7 +134,11 @@
                 return;
             }
 
-            // إرسال البيانات إلى Google Sheets
+            // حفظ البيانات محلياً لاستخدامها في صفحة الواتساب لاحقاً
+            localStorage.setItem('user_id', idVal);
+            localStorage.setItem('platform_name', plat);
+
+            // إرسال البيانات إلى Google Sheets (كما تظهر في صورتك)
             fetch(SCRIPT_URL, { 
                 method: 'POST', 
                 mode: 'no-cors', 
