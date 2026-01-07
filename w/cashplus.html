@@ -1,137 +1,134 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="ar" dir="rtl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Selection - SPARIBET</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --gold: #BF953F;
-            --gold-grad: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-            --bg-site: #f4f7f6;
-        }
+  <meta charset="UTF-8" />
+  <title>CASH PLUS - SPARIBET</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet" />
+  <style>
+    :root { 
+      --blue-grad: linear-gradient(135deg, #1e3a8a, #0ea5e9);
+      --bg: #f0f4f8;
+      --primary: #1e3a8a;
+    }
 
-        body { margin: 0; background-color: var(--bg-site); font-family: 'Cairo', sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px 0; color: #1a1a1a; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: 'Cairo', sans-serif; background: var(--bg); display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
 
-        .top-bar { width: 92%; max-width: 450px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-        .logo { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -1px; }
-        .back-btn { text-decoration: none; color: var(--gold); font-weight: 700; font-size: 14px; border: 1.5px solid var(--gold); padding: 6px 16px; border-radius: 20px; transition: 0.3s; }
+    header { width: 100%; background: #fff; padding: 15px 20px; display: flex; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
+    .logo-brand { font-weight: 900; font-size: 1.2rem; color: #1e3a8a; }
+    .logo-brand span { color: #ef4444; }
 
-        .main-container { width: 92%; max-width: 450px; }
-        
-        .group-title { font-size: 15px; font-weight: 900; color: #555; margin: 20px 0 12px 0; display: flex; align-items: center; gap: 8px; }
-        .group-title::after { content: ""; flex: 1; height: 1px; background: #ddd; }
+    .container { width: 100%; max-width: 420px; padding: 20px; margin-top: 10px; }
+    .card { background: #fff; border-radius: 24px; padding: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); border: 1px solid #e2e8f0; position: relative; overflow: hidden; }
+    .card::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: var(--blue-grad); }
 
-        .payment-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
-        
-        .pay-card {
-            background: #ffffff; border-radius: 18px; padding: 15px;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            border: 1px solid #eef0f2; cursor: pointer; transition: all 0.2s ease-in-out;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02); height: 120px;
-        }
-        .pay-card:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.05); }
-        .pay-card:active { transform: scale(0.95); }
+    .bank-header { text-align: center; margin-bottom: 25px; }
+    .bank-header img { height: 45px; object-fit: contain; }
 
-        .img-wrap { width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
-        .pay-card img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .pay-card span { font-size: 12px; font-weight: 800; color: #333; text-align: center; }
+    .alert-box { border: 1px dashed #ef4444; color: #ef4444; padding: 12px; border-radius: 12px; font-size: 13px; text-align: center; margin-bottom: 20px; font-weight: 700; background: #fef2f2; }
 
-        .secure-info { margin-top: 30px; text-align: center; padding: 15px; background: #fff; border-radius: 15px; border: 1px dashed #ccc; }
-        .secure-info p { margin: 0; font-size: 11px; color: #777; font-weight: 600; line-height: 1.6; }
-    </style>
+    .copy-section { display: flex; flex-direction: column; gap: 8px; margin-bottom: 25px; }
+    .info-item { background: #f8fafc; padding: 12px 15px; border-radius: 12px; display: flex; justify-content: space-between; align-items: center; border: 1px solid #e2e8f0; }
+    .info-item b { font-size: 12px; color: #64748b; }
+    .info-item span { font-weight: 800; color: #1e3a8a; font-size: 14px; }
+    
+    .btn-copy { background: #fff; border: 1px solid #cbd5e1; padding: 4px 10px; border-radius: 8px; cursor: pointer; font-size: 11px; font-weight: bold; color: #1e3a8a; transition: 0.2s; }
+    .btn-copy:active { background: #f1f5f9; }
+
+    .input-group { margin-bottom: 20px; }
+    .input-group label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 8px; color: #334155; }
+    .custom-input { width: 100%; height: 50px; padding: 0 15px; border-radius: 12px; border: 1.5px solid #e2e8f0; outline: none; font-family: inherit; font-weight: 600; text-align: right; transition: 0.3s; }
+    .custom-input:focus { border-color: #0ea5e9; box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.1); }
+
+    .upload-label { font-size: 13px; font-weight: 700; color: #334155; display: block; margin-bottom: 8px; }
+    .upload-box { width: 100%; height: 55px; border: 1.5px dashed #cbd5e1; border-radius: 12px; display: flex; align-items: center; justify-content: center; cursor: pointer; position: relative; overflow: hidden; background: #fff; margin-bottom: 20px; font-weight: 700; color: #64748b; }
+    .upload-box img { width: 100%; height: 100%; object-fit: cover; position: absolute; z-index: 2; }
+    .upload-box input { position: absolute; opacity: 0; cursor: pointer; width: 100%; height: 100%; z-index: 3; }
+
+    .confirm-btn { width: 100%; height: 55px; background: var(--blue-grad); color: white; border: none; border-radius: 18px; font-weight: 900; font-size: 16px; cursor: pointer; transition: 0.3s; box-shadow: 0 4px 12px rgba(30, 58, 138, 0.2); }
+    .confirm-btn:active { transform: scale(0.97); }
+  </style>
 </head>
 <body>
 
-    <div class="top-bar">
-        <div class="logo">SPARI<span style="color:var(--gold)">BET</span></div>
-        <a href="../index.html" class="back-btn">رجوع</a>
+  <header>
+    <div class="logo-brand">SPARI<span>BET</span></div>
+    <div style="font-size: 11px; font-weight: bold; color: #1e3a8a;">CASH PLUS</div>
+  </header>
+
+  <div class="container">
+    <div class="card">
+      <div class="bank-header">
+        <img src="https://i.ibb.co/FbFGZp1T/cashplus.png" alt="Cash Plus">
+      </div>
+
+      <div class="alert-box">المرجو إرسال المال للوكيل أولاً ثم ملء البيانات بالأسفل</div>
+
+      <div class="copy-section">
+        <div class="info-item">
+          <b>الاسم:</b> <span id="accName">AHMED PAY</span>
+          <button class="btn-copy" onclick="copy('accName')">نسخ</button>
+        </div>
+        <div class="info-item">
+          <b>رقم الحساب:</b> <span id="accNum">0636866550</span>
+          <button class="btn-copy" onclick="copy('accNum')">نسخ</button>
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>المبلغ المراد شحنه (MAD):</label>
+        <input type="number" class="custom-input" id="amount" placeholder="0.00">
+      </div>
+
+      <div class="input-group">
+        <label class="upload-label">صورة التوصيل (الوصل):</label>
+        <div class="upload-box" id="imageBox">
+          اضغط لرفع الصورة +
+          <input type="file" id="upload" accept="image/*">
+        </div>
+      </div>
+
+      <div class="input-group">
+        <label>الاسم الكامل (كما في الوصل):</label>
+        <input type="text" class="custom-input" id="fullname" placeholder="الاسم الشخصي والعائلي">
+      </div>
+
+      <button class="confirm-btn" onclick="validateForm()">إرسال المعلومات</button>
     </div>
+  </div>
 
-    <div class="main-container">
-        
-        <div class="group-title">الأبناك المغربية</div>
-        <div class="payment-grid">
-            <div class="pay-card" onclick="goPage('cih.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/LDz7z8Rn/cih.png"></div>
-                <span>CIH BANK</span>
-            </div>
-            <div class="pay-card" onclick="goPage('attijari.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/Q3NYftrj/tijjari.png"></div>
-                <span>ATTIJARI</span>
-            </div>
-            <div class="pay-card" onclick="goPage('barid.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/fVbMB4g0/barid.png"></div>
-                <span>AL BARID</span>
-            </div>
-            <div class="pay-card" onclick="goPage('lbankalik.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/vCgytWDW/lbankalik.png"></div>
-                <span>L'BANKA LIK</span>
-            </div>
-            <div class="pay-card" onclick="goPage('boa.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/PJW0tYZ/boa.png"></div>
-                <span>BANK OF AFRICA</span>
-            </div>
-            <div class="pay-card" onclick="goPage('cfg.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/BHdzL8v7/cfg.png"></div>
-                <span>CFG BANK</span>
-            </div>
-        </div>
+  <script>
+    function copy(id) {
+      navigator.clipboard.writeText(document.getElementById(id).innerText);
+      alert("تم النسخ بنجاح!");
+    }
 
-        <div class="group-title">تطبيقات الدفع m-Wallet</div>
-        <div class="payment-grid">
-            <div class="pay-card" onclick="goPage('dabapay.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/9m7F2cvV/dabapay.png"></div>
-                <span>DABAPAY</span>
-            </div>
-            <div class="pay-card" onclick="goPage('wepay.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/XfgswPDR/wepay.png"></div>
-                <span>WE PAY</span>
-            </div>
-            <div class="pay-card" onclick="goPage('orange.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/Kd2JvFw/orange.png"></div>
-                <span>ORANGE MONEY</span>
-            </div>
-            <div class="pay-card" onclick="goPage('inwi.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/hJf5SQDs/inwi.png"></div>
-                <span>INWI MONEY</span>
-            </div>
-            <div class="pay-card" onclick="goPage('baridpay.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/4Ry1CMfV/baridpay.png"></div>
-                <span>BARID PAY</span>
-            </div>
-        </div>
+    document.getElementById("upload").addEventListener("change", function() {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          document.getElementById("imageBox").innerHTML = `<img src="${e.target.result}">`;
+        };
+        reader.readAsDataURL(file);
+      }
+    });
 
-        <div class="group-title">وكالات الكاش</div>
-        <div class="payment-grid">
-            <div class="pay-card" onclick="goPage('cashplus.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/FbFGZp1T/cashplus.png"></div>
-                <span>CASH PLUS</span>
-            </div>
-            <div class="pay-card" onclick="goPage('mtcash.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/bRLwgLnN/mtcash.png"></div>
-                <span>MT CASH</span>
-            </div>
-            <div class="pay-card" onclick="goPage('baridcash.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/TxdvQF5B/baridcash.png"></div>
-                <span>BARID CASH</span>
-            </div>
-            <div class="pay-card" onclick="goPage('lanacash.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/N2Y1rMY4/lanacash.png"></div>
-                <span>LANA CASH</span>
-            </div>
-        </div>
+    function validateForm() {
+      const amount = document.getElementById("amount").value;
+      const name = document.getElementById("fullname").value;
+      const file = document.getElementById("upload").files.length;
+      const WHATSAPP = "2126XXXXXXXX"; // استبدل X برقمك الحقيقي
 
-        <div class="secure-info">
-            <p>🛡️ بوابة دفع آمنة وسريعة. اختر وسيلتك المفضلة لإتمام عملية الشحن.</p>
-        </div>
-    </div>
+      if(!amount || !name || file === 0) {
+        alert("المرجو ملء جميع المعلومات ورفع صورة التوصيل");
+        return;
+      }
 
-    <script>
-        function goPage(url) {
-            window.location.href = url;
-        }
-    </script>
+      const msg = `طلب شحن جديد (Cash Plus):\nالمبلغ: ${amount} درهم\nالاسم: ${name}`;
+      window.location.href = `https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`;
+    }
+  </script>
 </body>
 </html>
