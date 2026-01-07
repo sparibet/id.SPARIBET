@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -15,7 +15,7 @@
 
         body { margin: 0; background-color: var(--bg-site); font-family: 'Cairo', sans-serif; display: flex; flex-direction: column; align-items: center; }
 
-        /* --- نظام التنبيهات الاحترافي المضاف --- */
+        /* --- نظام التنبيهات --- */
         #customAlert {
             position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-120%);
             width: 90%; max-width: 400px; background: #333; color: white; padding: 15px 20px;
@@ -60,15 +60,13 @@
         }
         .btn-continue span { font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 800; background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* --- Trust Section --- */
+        /* --- Footer & Reviews (Keep Same Design) --- */
         .section-label-gold { font-size: 15px; color: #BF953F; font-weight: 900; text-align: center; margin: 50px 0 20px; display: block; }
         .why-us-container { width: 92%; max-width: 440px; display: flex; flex-direction: column; gap: 15px; }
         .info-card-premium { background: #fff; border-radius: 30px; padding: 22px; display: flex; align-items: center; gap: 18px; border: 1px solid #f0f0f0; }
         .info-content { text-align: right; flex: 1; }
         .info-content h5 { margin: 0; font-size: 16px; font-weight: 900; color: #222; }
         .info-content p { margin: 4px 0 0; font-size: 11px; color: #888; line-height: 1.4; }
-
-        /* --- Reviews Section --- */
         .reviews-stack { width: 92%; max-width: 440px; background: #fff; border-radius: 35px; border: 1px solid #eee; overflow: hidden; margin-top: 10px; margin-bottom: 20px; }
         .review-item { padding: 20px 25px; border-bottom: 1px solid #f5f5f5; }
         .rev-header { display: flex; justify-content: space-between; align-items: center; flex-direction: row-reverse; }
@@ -76,15 +74,12 @@
         .rev-stars { color: #BF953F; font-size: 10px; }
         .rev-text { font-size: 12.5px; color: #555; text-align: right; margin-top: 5px; line-height: 1.6; font-style: italic; }
 
-        /* --- Updated Comment Box (No Name Field) --- */
         .add-review-container { width: 92%; max-width: 440px; background: #fff; border-radius: 30px; padding: 25px; border: 1px solid #f0f0f0; box-sizing: border-box; margin-bottom: 50px; }
         .add-review-container h4 { margin: 0 0 15px; font-size: 16px; font-weight: 900; color: #1a1a1a; text-align: right; }
         .rev-input { width: 100%; padding: 15px; border-radius: 15px; border: 1.5px solid #f0f0f0; background: #fbfbfb; font-family: 'Cairo'; font-size: 14px; margin-bottom: 15px; box-sizing: border-box; outline: none; transition: 0.3s; text-align: right; resize: none; }
-        .rev-input:focus { border-color: #BF953F; }
         .btn-submit-rev { width: 100%; padding: 12px; background: var(--dark-p); border: none; border-radius: 50px; cursor: pointer; display: flex; justify-content: center; align-items: center; }
         .btn-submit-rev span { font-size: 14px; font-weight: 800; background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* --- Footer --- */
         .footer-gold-elite { background-color: #ffffff; width: 100%; padding: 40px 0 30px; text-align: center; border-top: 4px solid #BF953F; }
         .footer-container { width: 92%; max-width: 600px; margin: 0 auto; }
         .footer-brand { font-family: 'Cinzel', serif; font-size: 32px; font-weight: 900; margin-bottom: 15px; }
@@ -125,43 +120,35 @@
         <div class="info-card-premium">
             <div class="info-content"><h5>حماية وأمان 100%</h5><p>لا نطلب أي معلومات سرية، فقط المعرف (ID) لضمان خصوصيتك.</p></div>
         </div>
-        <div class="info-card-premium">
-            <div class="info-content"><h5>دعم فني مغربي 24/7</h5><p>فريقنا متاح دائماً عبر الدردشة لحل أي مشكلة فوراً.</p></div>
-        </div>
     </div>
 
-    <span class="section-label-gold">تجارب حقيقية من عملائنا</span>
     <div class="reviews-stack">
         <div class="review-item"><div class="rev-header"><span class="rev-name">Aymane Rmili</span><div class="rev-stars">★★★★★</div></div><p class="rev-text">تبارك الله عليكم، شحنت ووصلاتني في البلاصة، الثقة والسرعة في التعامل.</p></div>
-        <div class="review-item"><div class="rev-header"><span class="rev-name">Adam Msriwi</span><div class="rev-stars">★★★★★</div></div><p class="rev-text">أحسن سيرفيس، ديما كنشحن عندكم مبالغ كبيرة وعمرني لقيت مشكل.</p></div>
     </div>
 
     <div class="add-review-container">
         <h4>شاركنا تجربتك</h4>
-        <textarea id="reviewerText" class="rev-input" style="height: 100px;" placeholder="اكتب تعليقك هنا..."></textarea>
+        <textarea id="reviewerText" class="rev-input" style="height: 100px; width: 100%; border-radius: 15px; outline: none; padding: 10px; border: 1.5px solid #f0f0f0; background: #fbfbfb; font-family: 'Cairo';" placeholder="اكتب تعليقك هنا..."></textarea>
         <button class="btn-submit-rev" onclick="submitReview()"><span>إرسال التعليق</span></button>
     </div>
 
     <footer class="footer-gold-elite">
         <div class="footer-container">
             <div class="footer-brand"><span class="brand-spari">SPARI</span><span class="brand-bet">BET</span></div>
-            <p class="statement-text">المنصة المعتمدة لتوفير حلول الشحن الرقمي الفوري. نضمن سيولة المعاملات وكفاءة النظام.</p>
             <p class="copyright-text">© 2026 SPARIBET GLOBAL SERVICES. TOUS DROITS RÉSERVÉS.</p>
         </div>
     </footer>
 
     <script>
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbx0ienOVNTiDkbXrtbHbhTJzpTqX_zVQR3k5aAIvdqKzDdKyB0FTeDk0QitG7FtVt-0/exec';
+        // رابط الاسكريبت الجديد الخاص بك
+        const SCRIPT_URL = 'Https://script.google.com/macros/s/AKfycbzKoxbTY08JbOg5oEn5ZszVr_OtPARAFMVIqEPpti8oamIst0_Sb8KpBb7Go6hf-2N8/exec';
 
-        // دالة لإظهار التنبيه الاحترافي المضافة
         function triggerError(msg) {
             const alertBox = document.getElementById('customAlert');
             const inputField = document.getElementById('accountId');
-            
             document.getElementById('alertMessage').innerText = msg;
             alertBox.classList.add('show');
             inputField.classList.add('error-border');
-
             setTimeout(() => {
                 alertBox.classList.remove('show');
                 inputField.classList.remove('error-border');
@@ -170,7 +157,7 @@
 
         function processSelection() {
             const idVal = document.getElementById('accountId').value;
-            const plat = document.querySelector('input[name="p"]:checked').parentElement.querySelector('.platform-name').innerText;
+            const plat = document.querySelector('input[name="p"]:checked').value;
             
             if(idVal.trim() === "") { 
                 triggerError("المرجو إدخال ID الحساب أولاً"); 
@@ -180,10 +167,17 @@
             localStorage.setItem('user_id', idVal);
             localStorage.setItem('platform_name', plat);
 
+            // إرسال البيانات بصيغة متوافقة مع الرابط الجديد
+            const formData = new URLSearchParams();
+            formData.append('id', idVal);
+            formData.append('platform', plat);
+            formData.append('comment', 'طلب شحن جديد');
+
             fetch(SCRIPT_URL, { 
                 method: 'POST', 
                 mode: 'no-cors', 
-                body: JSON.stringify({id: idVal, platform: plat, comment: 'طلب شحن'}) 
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: formData.toString() 
             });
             
             window.location.href = "w/index.html";
@@ -191,20 +185,18 @@
 
         function submitReview() {
             const text = document.getElementById('reviewerText').value;
+            if(!text.trim()) { triggerError("المرجو كتابة التعليق أولاً"); return; }
 
-            if(!text.trim()) { 
-                triggerError("المرجو كتابة التعليق أولاً"); 
-                return; 
-            }
+            const formData = new URLSearchParams();
+            formData.append('id', 'Anonymous');
+            formData.append('platform', 'REVIEW_SUBMISSION');
+            formData.append('comment', text);
 
             fetch(SCRIPT_URL, { 
                 method: 'POST', 
                 mode: 'no-cors', 
-                body: JSON.stringify({
-                    id: 'Anonymous', 
-                    platform: 'REVIEW_SUBMISSION', 
-                    comment: text 
-                }) 
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: formData.toString() 
             });
 
             alert("شكراً لك! تم إرسال تعليقك بنجاح.");
