@@ -85,7 +85,7 @@
     async function sendOrder(){
       const a=document.getElementById('amount').value, n=document.getElementById('fullname').value, f=document.getElementById('fileInput').files[0], b=document.getElementById('submitBtn');
       if(!a||!n||!f){showAlert("المرجو ملء جميع البيانات.","warn");return;}
-      b.disabled=true; b.innerText="⏳ جاري الإرسال...";
+      b.disabled=true; b.innerText=" جاري الإرسال...";
       try{
         const fd=new FormData(); fd.append("image",f);
         const ir=await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`,{method:"POST",body:fd});
