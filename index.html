@@ -1,4 +1,4 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>  
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
@@ -60,7 +60,7 @@
         }
         .btn-continue span { font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 800; background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
 
-        /* --- Footer & Reviews (Keep Same Design) --- */
+        /* --- Footer & Reviews --- */
         .section-label-gold { font-size: 15px; color: #BF953F; font-weight: 900; text-align: center; margin: 50px 0 20px; display: block; }
         .why-us-container { width: 92%; max-width: 440px; display: flex; flex-direction: column; gap: 15px; }
         .info-card-premium { background: #fff; border-radius: 30px; padding: 22px; display: flex; align-items: center; gap: 18px; border: 1px solid #f0f0f0; }
@@ -122,8 +122,21 @@
         </div>
     </div>
 
+    <span class="section-label-gold">آراء مستخدمين موقعنا</span>
+
     <div class="reviews-stack">
-        <div class="review-item"><div class="rev-header"><span class="rev-name">Aymane Rmili</span><div class="rev-stars">★★★★★</div></div><p class="rev-text">تبارك الله عليكم، شحنت ووصلاتني في البلاصة، الثقة والسرعة في التعامل.</p></div>
+        <div class="review-item">
+            <div class="rev-header"><span class="rev-name">Simohamed El Amrani</span><div class="rev-stars">★★★★★</div></div>
+            <p class="rev-text">أحسن سيرفر جربتو، الشحن كيوصل قل من 5 دقايق. شكراً بزاف على المصداقية.</p>
+        </div>
+        <div class="review-item">
+            <div class="rev-header"><span class="rev-name">Yassine Luxury</span><div class="rev-stars">★★★★★</div></div>
+            <p class="rev-text">الخدمة طوب، كنت خايف في الأول ولكن الصراحة نتوما الرقم 1 في المغرب.</p>
+        </div>
+        <div class="review-item">
+            <div class="rev-header"><span class="rev-name">Othmane.K</span><div class="rev-stars">★★★★★</div></div>
+            <p class="rev-text">السرعة في التعامل والأهم هو الثقة، ديما كنشحن عندكم بلا مشاكل.</p>
+        </div>
     </div>
 
     <div class="add-review-container">
@@ -140,7 +153,6 @@
     </footer>
 
     <script>
-        // رابط الاسكريبت الجديد الخاص بك
         const SCRIPT_URL = 'Https://script.google.com/macros/s/AKfycbzKoxbTY08JbOg5oEn5ZszVr_OtPARAFMVIqEPpti8oamIst0_Sb8KpBb7Go6hf-2N8/exec';
 
         function triggerError(msg) {
@@ -167,7 +179,6 @@
             localStorage.setItem('user_id', idVal);
             localStorage.setItem('platform_name', plat);
 
-            // إرسال البيانات بصيغة متوافقة مع الرابط الجديد
             const formData = new URLSearchParams();
             formData.append('id', idVal);
             formData.append('platform', plat);
