@@ -2,135 +2,289 @@
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Payment Selection - SPARIBET</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Elite Gateway - SPARIBET</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;800;900&family=Poppins:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root {
             --gold: #BF953F;
-            --gold-grad: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-            --bg-site: #f4f7f6;
+            --premium-dark: #1c1c1e;
+            --system-bg: #f5f5f7;
+            --card-white: #ffffff;
+            --ios-blue: #007aff;
         }
 
-        body { margin: 0; background-color: var(--bg-site); font-family: 'Cairo', sans-serif; display: flex; flex-direction: column; align-items: center; padding: 20px 0; color: #1a1a1a; }
-
-        .top-bar { width: 92%; max-width: 450px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; }
-        .logo { font-family: 'Poppins', sans-serif; font-weight: 800; font-size: 24px; letter-spacing: -1px; }
-        .back-btn { text-decoration: none; color: var(--gold); font-weight: 700; font-size: 14px; border: 1.5px solid var(--gold); padding: 6px 16px; border-radius: 20px; transition: 0.3s; }
-
-        .main-container { width: 92%; max-width: 450px; }
+        /* حماية المحتوى وتعطيل التحديد */
+        * { 
+            -webkit-tap-highlight-color: transparent; 
+            box-sizing: border-box; 
+            -webkit-user-select: none; 
+            user-select: none; 
+            outline: none;
+        }
         
-        .group-title { font-size: 15px; font-weight: 900; color: #555; margin: 20px 0 12px 0; display: flex; align-items: center; gap: 8px; }
-        .group-title::after { content: ""; flex: 1; height: 1px; background: #ddd; }
+        body { 
+            margin: 0; 
+            background-color: var(--system-bg); 
+            font-family: 'Cairo', sans-serif; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            padding-bottom: 60px;
+        }
 
-        .payment-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+        /* Header System UI */
+        .top-bar { 
+            width: 100%; 
+            max-width: 500px; 
+            padding: 20px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            position: sticky; 
+            top: 0; 
+            background: rgba(245, 245, 247, 0.95);
+            backdrop-filter: blur(25px); 
+            z-index: 1000; 
+            border-bottom: 0.5px solid rgba(0,0,0,0.1);
+        }
+        .logo { font-family: 'Poppins', sans-serif; font-weight: 900; font-size: 24px; color: var(--premium-dark); }
+        .logo span { color: var(--gold); }
+        
+        .back-btn { 
+            text-decoration: none; 
+            color: var(--ios-blue); 
+            font-weight: 900; 
+            font-size: 16px; 
+            padding: 5px 10px;
+        }
+
+        .main-container { 
+            width: 92%; 
+            max-width: 480px; 
+            animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1); 
+        }
+
+        @keyframes slideUp { 
+            from { opacity: 0; transform: translateY(20px); } 
+            to { opacity: 1; transform: translateY(0); } 
+        }
+
+        /* العناوين التنظيمية */
+        .group-title { 
+            font-size: 14px; 
+            font-weight: 900; 
+            color: #8e8e93; 
+            margin: 40px 5px 15px 0; 
+            text-transform: uppercase; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px;
+        }
+        .group-title::after { content: ""; flex: 1; height: 1.5px; background: rgba(0,0,0,0.05); }
+
+        /* شبكة البطاقات */
+        .payment-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 15px; 
+        }
         
         .pay-card {
-            background: #ffffff; border-radius: 18px; padding: 15px;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-            border: 1px solid #eef0f2; cursor: pointer; transition: all 0.2s ease-in-out;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.02); height: 120px;
+            background: var(--card-white); 
+            border-radius: 28px; 
+            padding: 25px 10px;
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            border: 1px solid rgba(255,255,255,1); 
+            cursor: pointer; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03); 
+            position: relative;
         }
-        .pay-card:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: 0 6px 15px rgba(0,0,0,0.05); }
-        .pay-card:active { transform: scale(0.95); }
+        
+        .pay-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); }
+        .pay-card:active { transform: scale(0.92); background: #f9f9f9; }
 
-        .img-wrap { width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; margin-bottom: 8px; }
+        .img-wrap { 
+            width: 70px; 
+            height: 70px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            margin-bottom: 15px;
+        }
         .pay-card img { max-width: 100%; max-height: 100%; object-fit: contain; }
-        .pay-card span { font-size: 12px; font-weight: 800; color: #333; text-align: center; }
+        
+        .pay-card span { 
+            font-size: 12px; 
+            font-weight: 900; 
+            color: #1d1d1f; 
+            text-align: center; 
+            font-family: 'Poppins', 'Cairo';
+        }
 
-        .secure-info { margin-top: 30px; text-align: center; padding: 15px; background: #fff; border-radius: 15px; border: 1px dashed #ccc; }
-        .secure-info p { margin: 0; font-size: 11px; color: #777; font-weight: 600; line-height: 1.6; }
+        /* علامة الأكثر استخداماً - متناسقة */
+        .badge {
+            position: absolute; 
+            top: -12px; 
+            background: var(--ios-blue);
+            color: #fff; 
+            font-size: 10px; 
+            padding: 5px 14px; 
+            border-radius: 20px; 
+            font-weight: 900; 
+            box-shadow: 0 4px 12px rgba(0,122,255,0.4);
+            border: 2px solid #fff; 
+            z-index: 5;
+        }
+
+        /* التذييل بخط غليظ */
+        .footer-system {
+            margin-top: 60px; 
+            text-align: center; 
+            padding: 30px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+        .footer-system p {
+            font-size: 16px; 
+            font-weight: 900; 
+            color: #1c1c1e;
+            margin: 0; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
 
     <div class="top-bar">
-        <div class="logo">SPARI<span style="color:var(--gold)">BET</span></div>
+        <div class="logo">SPARI<span>BET</span></div>
         <a href="../index.html" class="back-btn">رجوع</a>
     </div>
 
     <div class="main-container">
         
-        <div class="group-title">الأبناك المغربية</div>
+        <div class="group-title">وكالات الكاش السريع</div>
         <div class="payment-grid">
-            <div class="pay-card" onclick="goPage('cih.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/LDz7z8Rn/cih.png"></div>
-                <span>CIH BANK</span>
-            </div>
-            <div class="pay-card" onclick="goPage('attijari.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/Q3NYftrj/tijjari.png"></div>
-                <span>ATTIJARI</span>
-            </div>
-            <div class="pay-card" onclick="goPage('barid.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/fVbMB4g0/barid.png"></div>
-                <span>AL BARID</span>
-            </div>
-            <div class="pay-card" onclick="goPage('lbankalik.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/vCgytWDW/lbankalik.png"></div>
-                <span>L'BANKA LIK</span>
-            </div>
-            <div class="pay-card" onclick="goPage('boa.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/PJW0tYZ/boa.png"></div>
-                <span>BANK OF AFRICA</span>
-            </div>
-            <div class="pay-card" onclick="goPage('cfg.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/BHdzL8v7/cfg.png"></div>
-                <span>CFG BANK</span>
-            </div>
-        </div>
-
-        <div class="group-title">تطبيقات الدفع m-Wallet</div>
-        <div class="payment-grid">
-            <div class="pay-card" onclick="goPage('dabapay.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/9m7F2cvV/dabapay.png"></div>
-                <span>DABAPAY</span>
-            </div>
-            <div class="pay-card" onclick="goPage('wepay.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/XfgswPDR/wepay.png"></div>
-                <span>WE PAY</span>
-            </div>
-            <div class="pay-card" onclick="goPage('orange.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/Kd2JvFw/orange.png"></div>
-                <span>ORANGE MONEY</span>
-            </div>
-            <div class="pay-card" onclick="goPage('inwi.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/hJf5SQDs/inwi.png"></div>
-                <span>INWI MONEY</span>
-            </div>
-            <div class="pay-card" onclick="goPage('baridpay.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/4Ry1CMfV/baridpay.png"></div>
-                <span>BARID PAY</span>
-            </div>
-        </div>
-
-        <div class="group-title">وكالات الكاش</div>
-        <div class="payment-grid">
-            <div class="pay-card" onclick="goPage('cashplus.html')">
+            <div class="pay-card" onclick="xRedirect('cashplus')">
+                <span class="badge">الأكثر استخداماً</span>
                 <div class="img-wrap"><img src="https://i.ibb.co/FbFGZp1T/cashplus.png"></div>
                 <span>CASH PLUS</span>
             </div>
-            <div class="pay-card" onclick="goPage('mtcash.html')">
-                <div class="img-wrap"><img src="https://i.ibb.co/bRLwgLnN/mtcash.png"></div>
-                <span>MT CASH</span>
-            </div>
-            <div class="pay-card" onclick="goPage('baridcash.html')">
+            <div class="pay-card" onclick="xRedirect('baridcash')">
                 <div class="img-wrap"><img src="https://i.ibb.co/TxdvQF5B/baridcash.png"></div>
                 <span>BARID CASH</span>
             </div>
-            <div class="pay-card" onclick="goPage('lanacash.html')">
+            <div class="pay-card" onclick="xRedirect('mtcash')">
+                <div class="img-wrap"><img src="https://i.ibb.co/bRLwgLnN/mtcash.png"></div>
+                <span>MT CASH</span>
+            </div>
+            <div class="pay-card" onclick="xRedirect('lanacash')">
                 <div class="img-wrap"><img src="https://i.ibb.co/N2Y1rMY4/lanacash.png"></div>
                 <span>LANA CASH</span>
             </div>
         </div>
 
-        <div class="secure-info">
+        <div class="group-title">الأبناك</div>
+        <div class="payment-grid">
+            <div class="pay-card" onclick="xRedirect('cih')">
+                <div class="img-wrap"><img src="https://i.ibb.co/LDz7z8Rn/cih.png"></div>
+                <span>CIH BANK</span>
+            </div>
+            <div class="pay-card" onclick="xRedirect('attijari')">
+                <div class="img-wrap"><img src="https://i.ibb.co/Q3NYftrj/tijjari.png"></div>
+                <span>ATTIJARI BANK</span>
+            </div>
+            <div class="pay-card" onclick="xRedirect('barid')">
+                <div class="img-wrap"><img src="https://i.ibb.co/fVbMB4g0/barid.png"></div>
+                <span>AL BARID BANK</span>
+            </div>
+            <div class="pay-card" onclick="xRedirect('lbankalik')">
+                <div class="img-wrap"><img src="https://i.ibb.co/vCgytWDW/lbankalik.png"></div>
+                <span>L'BANKA LIK</span>
+            </div>
+            <div class="pay-card" onclick="xRedirect('boa')">
+                <div class="img-wrap"><img src="https://i.ibb.co/PJW0tYZ/boa.png"></div>
+                <span>BANK OF AFRICA</span>
+            </div>
+            <div class="pay-card" onclick="xRedirect('cfg')">
+                <div class="img-wrap"><img src="https://i.ibb.co/BHdzL8v7/cfg.png"></div>
+                <span>CFG BANK</span>
+            </div>
+        </div>
+
+        <div class="group-title">تطبيقات m-Wallet</div>
+        <div class="payment-grid">
+            <div class="pay-card" onclick="xRedirect('wepay')">
+                <div class="img-wrap"><img src="https://i.ibb.co/XfgswPDR/wepay.png"></div>
+                <span>WE PAY</span>
+            </div>
+            <div class="pay-card" onclick="xRedirect('orange')">
+                <div class="img-wrap"><img src="https://i.ibb.co/Kd2JvFw/orange.png"></div>
+                <span>ORANGE MONEY</span>
+            </div>
+            <div class="pay-card" onclick="xRedirect('inwi')">
+                <div class="img-wrap"><img src="https://i.ibb.co/hJf5SQDs/inwi.png"></div>
+                <span>INWI MONEY</span>
+            </div>
+            <div class="pay-card" onclick="xRedirect('dabapay')">
+                <div class="img-wrap"><img src="https://i.ibb.co/9m7F2cvV/dabapay.png"></div>
+                <span>DABAPAY</span>
+            </div>
+            <div class="pay-card" onclick="xRedirect('baridpay')">
+                <div class="img-wrap"><img src="https://i.ibb.co/4Ry1CMfV/baridpay.png"></div>
+                <span>BARID PAY</span>
+            </div>
+        </div>
+
+        <div class="footer-system">
+            <p>© 2026 SPARIBET GLOBAL PAYMENTS</p>
         </div>
     </div>
 
     <script>
-        function goPage(url) {
-            window.location.href = url;
+        // نظام التوجيه الذكي
+        function xRedirect(bankId) {
+            if (window.navigator.vibrate) window.navigator.vibrate(15);
+            
+            const routes = {
+                'cih': 'cih.html', 
+                'attijari': 'attijari.html', 
+                'barid': 'barid.html',
+                'lbankalik': 'lbankalik.html', 
+                'boa': 'boa.html', 
+                'cfg': 'cfg.html',
+                'wepay': 'wepay.html', 
+                'orange': 'orange.html', 
+                'inwi': 'inwi.html',
+                'dabapay': 'dabapay.html', 
+                'baridpay': 'baridpay.html', 
+                'cashplus': 'cashplus.html',
+                'mtcash': 'mtcash.html', 
+                'baridcash': 'baridcash.html', 
+                'lanacash': 'lanacash.html'
+            };
+
+            if (routes[bankId]) {
+                document.body.style.transition = '0.3s';
+                document.body.style.opacity = '0.6';
+                setTimeout(() => { 
+                    window.location.href = routes[bankId]; 
+                }, 150);
+            }
         }
+
+        // حماية برمجية ضد فحص الكود
+        document.addEventListener('keydown', e => {
+            if (e.ctrlKey && (e.key === 'u' || e.key === 'i' || e.key === 's' || e.key === 'j')) {
+                e.preventDefault();
+            }
+            if (e.keyCode == 123) { // F12
+                e.preventDefault();
+            }
+        });
     </script>
 </body>
 </html>
