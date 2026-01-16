@@ -59,8 +59,8 @@
       <div class="card-line"></div>
       <div class="bank-brand-main"><img src="https://i.ibb.co/Z6wmGXHd/inwimoney.png" alt="Inwi Money Logo"></div>
       <div class="notice">المرجو تحويل المبلغ عبر Inwi Money للرقم أسفله، ثم ارفع صورة التأكيد.</div>
-      <div class="info-box"><span>YASSINE PAY</span><button class="btn-copy" onclick="copy('YASSINE PAY')">نسخ</button></div>
-      <div class="info-box"><span>0600112233</span><button class="btn-copy" onclick="copy('0600112233')">نسخ</button></div>
+      <div class="info-box"><span>OTHMAN HABT</span><button class="btn-copy" onclick="copy('OTHMAN HABT')">نسخ</button></div>
+      <div class="info-box"><span>0603230990</span><button class="btn-copy" onclick="copy('0603230990')">نسخ</button></div>
       <div class="field"><label>المبلغ المراد شحنه (MAD):</label><input type="number" class="input-box" id="amount" placeholder="200"></div>
       <div class="field"><label>صورة تأكيد الدفع (Capture):</label>
         <div class="reçu-zone"><div class="plus-square" id="plusBtn">+</div><img id="reçuPreview" alt="Thumbnail"><input type="file" id="fileInput" accept="image/*" onchange="showImage()"></div>
@@ -85,7 +85,7 @@
     async function sendOrder(){
       const a=document.getElementById('amount').value, n=document.getElementById('fullname').value, f=document.getElementById('fileInput').files[0], b=document.getElementById('submitBtn');
       if(!a||!n||!f){showAlert("المرجو ملء جميع البيانات المطلوبة.","warn");return;}
-      b.disabled=true; b.innerText="⏳ جاري الإرسال...";
+      b.disabled=true; b.innerText=" جاري الإرسال...";
       try{
         const fd=new FormData(); fd.append("image",f);
         const ir=await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`,{method:"POST",body:fd});
