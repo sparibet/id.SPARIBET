@@ -1,66 +1,33 @@
-<!DOCTYPE html>  
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>SPARIBET - Official Digital Hub</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@900&family=Cairo:wght@700;900&family=Poppins:wght@400;600;800;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --gold-grad: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C);
-            --dark-p: #121212;
-            --bg-site: #f8f9fa;
-            --error-red: #ff4d4d;
-        }
-
+        :root { --gold-grad: linear-gradient(135deg, #BF953F, #FCF6BA, #B38728, #FBF5B7, #AA771C); --dark-p: #121212; --bg-site: #f8f9fa; --error-red: #ff4d4d; }
+        * { -webkit-tap-highlight-color: transparent; -webkit-touch-callout: none; -webkit-user-select: none; user-select: none; }
         body { margin: 0; background-color: var(--bg-site); font-family: 'Cairo', sans-serif; display: flex; flex-direction: column; align-items: center; }
-
-        /* --- نظام التنبيهات --- */
-        #customAlert {
-            position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-120%);
-            width: 90%; max-width: 400px; background: #333; color: white; padding: 15px 20px;
-            border-radius: 15px; display: flex; align-items: center; gap: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            z-index: 10000; border-right: 5px solid var(--error-red); text-align: right;
-        }
+        #customAlert { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-120%); width: 90%; max-width: 400px; background: #333; color: white; padding: 15px 20px; border-radius: 15px; display: flex; align-items: center; gap: 12px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 10000; border-right: 5px solid var(--error-red); text-align: right; }
         #customAlert.show { transform: translateX(-50%) translateY(0); }
         .id-input.error-border { border-color: var(--error-red) !important; background: #fff5f5 !important; }
-
-        /* --- Header --- */
         .header { padding: 40px 0; text-align: center; width: 100%; }
         .main-logo { font-family: 'Cinzel', serif; font-size: 42px; font-weight: 900; margin: 0; letter-spacing: 2px; }
         .text-spari { color: #000; }
         .text-bet { background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-        /* --- Main Card --- */
-        .main-card {
-            background: #ffffff; width: 92%; max-width: 440px;
-            padding: 35px 20px; border-radius: 40px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.05);
-            border: 1px solid #f0f0f0; display: flex; flex-direction: column; align-items: center;
-        }
-
+        .main-card { background: #ffffff; width: 92%; max-width: 440px; padding: 35px 20px; border-radius: 40px; box-shadow: 0 20px 50px rgba(0,0,0,0.05); border: 1px solid #f0f0f0; display: flex; flex-direction: column; align-items: center; }
         .section-title { width: 100%; text-align: right; font-size: 16px; font-weight: 900; margin-bottom: 20px; color: #1a1a1a; padding-right: 10px; }
-
         .platform-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 30px; width: 100%; }
         .platform-item { display: flex; flex-direction: column; align-items: center; cursor: pointer; }
         .icon-box { width: 85px; height: 85px; background: #fff; border: 2.5px solid #f2f2f2; border-radius: 25px; display: flex; align-items: center; justify-content: center; overflow: hidden; transition: 0.4s; }
         .platform-item input { display: none; }
         .platform-item:has(input:checked) .icon-box { border-color: #BF953F; transform: scale(1.1) translateY(-5px); box-shadow: 0 10px 25px rgba(191, 149, 63, 0.2); }
-        .icon-box img { width: 100%; height: 100%; object-fit: cover; }
+        .icon-box img { width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
         .platform-name { font-size: 10px; font-weight: 800; margin-top: 8px; color: #aaa; text-transform: uppercase; }
-
-        /* --- Input & Button --- */
-        .id-input { width: 100%; padding: 20px 25px; border-radius: 22px; border: 2.5px solid #f5f5f5; background: #fbfbfb; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 600; box-sizing: border-box; outline: none; margin-bottom: 25px; text-align: left; transition: 0.3s; }
-        
-        .btn-continue { 
-            width: 75%; padding: 18px; background: var(--dark-p); border: none; border-radius: 50px; cursor: pointer; 
-            display: flex; justify-content: center; align-items: center; margin-bottom: 20px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
+        .id-input { width: 100%; padding: 20px 25px; border-radius: 22px; border: 2.5px solid #f5f5f5; background: #fbfbfb; font-size: 16px; font-family: 'Poppins', sans-serif; font-weight: 600; box-sizing: border-box; outline: none; margin-bottom: 25px; text-align: left; -webkit-user-select: text; user-select: text; }
+        .btn-continue { width: 75%; padding: 18px; background: var(--dark-p); border: none; border-radius: 50px; cursor: pointer; display: flex; justify-content: center; align-items: center; margin-bottom: 20px; transition: all 0.4s; }
         .btn-continue span { font-family: 'Poppins', sans-serif; font-size: 17px; font-weight: 800; background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
-        /* --- Footer & Reviews --- */
         .section-label-gold { font-size: 15px; color: #BF953F; font-weight: 900; text-align: center; margin: 50px 0 20px; display: block; }
         .why-us-container { width: 92%; max-width: 440px; display: flex; flex-direction: column; gap: 15px; }
         .info-card-premium { background: #fff; border-radius: 30px; padding: 22px; display: flex; align-items: center; gap: 18px; border: 1px solid #f0f0f0; }
@@ -73,23 +40,16 @@
         .rev-name { font-size: 14px; font-weight: 900; color: #000; font-family: 'Poppins', sans-serif; }
         .rev-stars { color: #BF953F; font-size: 10px; }
         .rev-text { font-size: 12.5px; color: #555; text-align: right; margin-top: 5px; line-height: 1.6; font-style: italic; }
-
         .add-review-container { width: 92%; max-width: 440px; background: #fff; border-radius: 30px; padding: 25px; border: 1px solid #f0f0f0; box-sizing: border-box; margin-bottom: 50px; }
         .add-review-container h4 { margin: 0 0 15px; font-size: 16px; font-weight: 900; color: #1a1a1a; text-align: right; }
         .rev-input { width: 100%; padding: 15px; border-radius: 15px; border: 1.5px solid #f0f0f0; background: #fbfbfb; font-family: 'Cairo'; font-size: 14px; margin-bottom: 15px; box-sizing: border-box; outline: none; transition: 0.3s; text-align: right; resize: none; }
         .btn-submit-rev { width: 100%; padding: 12px; background: var(--dark-p); border: none; border-radius: 50px; cursor: pointer; display: flex; justify-content: center; align-items: center; }
         .btn-submit-rev span { font-size: 14px; font-weight: 800; background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-
         .footer-gold-elite { background-color: #ffffff; width: 100%; padding: 40px 0 30px; text-align: center; border-top: 4px solid #BF953F; }
-        .footer-container { width: 92%; max-width: 600px; margin: 0 auto; }
-        .footer-brand { font-family: 'Cinzel', serif; font-size: 32px; font-weight: 900; margin-bottom: 15px; }
-        .brand-spari { color: #1a1a1a; }
         .brand-bet { background: var(--gold-grad); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .statement-text { font-family: 'Cairo', sans-serif; font-size: 15px; font-weight: 900; color: #333; line-height: 1.6; margin-bottom: 25px; }
-        .copyright-text { font-family: 'Poppins', sans-serif; font-size: 9px; font-weight: 800; color: #ccc; border-top: 1px solid #f5f5f5; padding-top: 20px; }
     </style>
 </head>
-<body>
+<body oncontextmenu="return false;" onkeydown="if(event.keyCode==123 || (event.ctrlKey && event.shiftKey && (event.keyCode==73 || event.keyCode==74)) || (event.ctrlKey && event.keyCode==85)) return false;">
 
     <div id="customAlert">
         <span style="font-size: 20px;">⚠️</span>
@@ -112,7 +72,7 @@
         </div>
         
         <input type="number" class="id-input" id="accountId" placeholder="Enter Your ID Account" oninput="if(this.value.length > 15) this.value = this.value.slice(0, 15);">
-        <button class="btn-continue" onclick="processSelection()"><span>CONTINUE</span></button>
+        <button class="btn-continue" id="masterBtn"><span>CONTINUE</span></button>
     </div>
 
     <div class="why-us-container">
@@ -141,8 +101,8 @@
 
     <div class="add-review-container">
         <h4>شاركنا تجربتك</h4>
-        <textarea id="reviewerText" class="rev-input" style="height: 100px; width: 100%; border-radius: 15px; outline: none; padding: 10px; border: 1.5px solid #f0f0f0; background: #fbfbfb; font-family: 'Cairo';" placeholder="اكتب تعليقك هنا..."></textarea>
-        <button class="btn-submit-rev" onclick="submitReview()"><span>إرسال التعليق</span></button>
+        <textarea id="reviewerText" class="rev-input" style="height: 100px;" placeholder="اكتب تعليقك هنا..."></textarea>
+        <button class="btn-submit-rev" id="revBtn"><span>إرسال التعليق</span></button>
     </div>
 
     <footer class="footer-gold-elite">
@@ -153,66 +113,32 @@
     </footer>
 
     <script>
-        const SCRIPT_URL = 'Https://script.google.com/macros/s/AKfycbzKoxbTY08JbOg5oEn5ZszVr_OtPARAFMVIqEPpti8oamIst0_Sb8KpBb7Go6hf-2N8/exec';
+        /**
+         * SPARIBET SECURITY ENGINE v2.0
+         * Protected & Obfuscated 
+         */
+        (function(_0x1b2c,_0x3a4d){var _0x5e2f=function(_0x2d1a){while(--_0x2d1a){_0x1b2c['push'](_0x1b2c['shift']());}};_0x5e2f(++_0x3a4d);}(_0x2b3c= ['\x48\x74\x74\x70\x73\x3a\x2f\x2f\x73\x63\x72\x69\x70\x74\x2e\x67\x6f\x6f\x67\x6c\x65\x2e\x63\x6f\x6d\x2f\x6d\x61\x63\x72\x6f\x73\x2f\x73\x2f\x41\x4b\x66\x79\x63\x62\x7a\x4b\x6f\x72\x62\x54\x59\x30\x38\x4a\x62\x4f\x67\x35\x6f\x45\x6e\x35\x5a\x73\x76\x72\x5f\x4f\x74\x50\x41\x52\x41\x46\x4d\x56\x49\x71\x45\x50\x70\x74\x69\x38\x6f\x6am\x49\x73\x74\x30\x5f\x53\x62\x38\x4b\x70\x42\x62\x37\x47\x6f\x36\x68\x66\x2d\x32\x4e\x38\x2f\x65\x78\x65\x63','\x73\x68\x6f\x77','\x61\x63\x63\x6f\x75\x6e\x74\x49\x64','\x77\x2f\x69\x6e\x64\x65\x78\x2e\x68\x74\x6d\x6c','\x61\x64\x64','\x65\x72\x72\x6f\x72\x2d\x62\x6f\x72\x64\x65\x72','\x63\x6c\x69\x63\x6b','\x6d\x61\x73\x74\x65\x72\x42\x74\x6e','\x72\x65\x76\x42\x74\x6e','\x52\x45\x56\x49\x45\x57\x5f\x53\x55\x42\x4d\x49\x53\x53\x49\x4f\x4e'],0x1a4));var _0x0a1b=function(_0x2c3b,_0x1b0a){_0x2c3b=_0x2c3b-0x0;var _0x5d2e=_0x2b3c[_0x2c3b];return _0x5d2e;};
+        
+        function _tErr(_0x4d2a){const _0x1a2b=document['getElementById']('customAlert');const _0x3b2c=document['getElementById'](_0x0a1b('0x2'));document['getElementById']('alertMessage')['innerText']=_0x4d2a;_0x1a2b['classList'][_0x0a1b('0x4')](_0x0a1b('0x1'));_0x3b2c['classList'][_0x0a1b('0x4')](_0x0a1b('0x5'));setTimeout(()=>{_0x1a2b['classList']['remove'](_0x0a1b('0x1'));_0x3b2c['classList']['remove'](_0x0a1b('0x5'));},0xbb8);}
 
-        function triggerError(msg) {
-            const alertBox = document.getElementById('customAlert');
-            const inputField = document.getElementById('accountId');
-            document.getElementById('alertMessage').innerText = msg;
-            alertBox.classList.add('show');
-            inputField.classList.add('error-border');
-            setTimeout(() => {
-                alertBox.classList.remove('show');
-                inputField.classList.remove('error-border');
-            }, 3000);
-        }
+        document['getElementById'](_0x0a1b('0x7'))['addEventListener'](_0x0a1b('0x6'),function(){
+            const _0x1f2e=document['getElementById'](_0x0a1b('0x2'))['value'];
+            const _0x5d4c=document['querySelector']('input[name="p"]:checked')['value'];
+            if(_0x1f2e['trim']()===""){_tErr("\u0627\u0644\u0645\u0631\u062C\u0648\x20\u0625\u062F\u062E\u0627\u0644\x20\x49\x44\x20\u0627\u0644\u062D\u0633\u0627\u0628\x20\u0623\u0648\u0644\u0627\u0641");return;}
+            localStorage['setItem']('user_id',_0x1f2e);localStorage['setItem']('platform_name',_0x5d4c);
+            const _0x4a3b=new URLSearchParams();_0x4a3b['append']('id',_0x1f2e);_0x4a3b['append']('platform',_0x5d4c);_0x4a3b['append']('comment','\u0637\u0644\u0628\x20\u0634\x062D\u0646\x20\u062C\u062F\u064A\u062F');
+            fetch(_0x0a1b('0x0'),{method:'POST',mode:'no-cors',body:_0x4a3b['toString']()});
+            window['location']['href']=_0x0a1b('0x3');
+        });
 
-        function processSelection() {
-            const idVal = document.getElementById('accountId').value;
-            const plat = document.querySelector('input[name="p"]:checked').value;
-            
-            if(idVal.trim() === "") { 
-                triggerError("المرجو إدخال ID الحساب أولاً"); 
-                return; 
-            }
-            
-            localStorage.setItem('user_id', idVal);
-            localStorage.setItem('platform_name', plat);
-
-            const formData = new URLSearchParams();
-            formData.append('id', idVal);
-            formData.append('platform', plat);
-            formData.append('comment', 'طلب شحن جديد');
-
-            fetch(SCRIPT_URL, { 
-                method: 'POST', 
-                mode: 'no-cors', 
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: formData.toString() 
-            });
-            
-            window.location.href = "w/index.html";
-        }
-
-        function submitReview() {
-            const text = document.getElementById('reviewerText').value;
-            if(!text.trim()) { triggerError("المرجو كتابة التعليق أولاً"); return; }
-
-            const formData = new URLSearchParams();
-            formData.append('id', 'Anonymous');
-            formData.append('platform', 'REVIEW_SUBMISSION');
-            formData.append('comment', text);
-
-            fetch(SCRIPT_URL, { 
-                method: 'POST', 
-                mode: 'no-cors', 
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: formData.toString() 
-            });
-
-            alert("شكراً لك! تم إرسال تعليقك بنجاح.");
-            document.getElementById('reviewerText').value = "";
-        }
+        document['getElementById'](_0x0a1b('0x8'))['addEventListener'](_0x0a1b('0x6'),function(){
+            const _0x2b1e=document['getElementById']('reviewerText')['value'];
+            if(!_0x2b1e['trim']()){_tErr("\u0627\u0644\u0645\u0631\u062C\u0648\x20\u0643\u062F\u0627\u0628\u0629\x20\u0627\u0644\u062A\u0631\u0644\u064A\u0642\x20\u0623\u0648\u0644\u0627\u0641");return;}
+            const _0x3e1a=new URLSearchParams();_0x3e1a['append']('id','Anonymous');_0x3e1a['append']('platform',_0x0a1b('0x9'));_0x3e1a['append']('comment',_0x2b1e);
+            fetch(_0x0a1b('0x0'),{method:'POST',mode:'no-cors',body:_0x3e1a['toString']()});
+            alert("\u0634\u0643\u0631\u0627\u064b\x20\u0644\u0643\u0021\x20\u062A\u0645\x20\u0625\u0631\u0633\u0627\u0644\x20\u062A\u0631\u0644\u064A\u0642\x0643\x20\u0628\u0646\u062C\u0627\u062D\u002E");
+            document['getElementById']('reviewerText')['value']="";
+        });
     </script>
 </body>
 </html>
