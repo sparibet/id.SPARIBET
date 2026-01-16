@@ -6,59 +6,40 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet" />
   <style>
-    :root { --primary: #0056b3; --accent: #ffcc00; --bg: #f0f4f8; } /* ألوان البريد بنك */
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; }
+    :root { --primary: #0056b3; --accent: #ffcc00; --bg: #f0f4f8; }
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Cairo', sans-serif; -webkit-user-select: none; user-select: none; }
     body { background: var(--bg); display: flex; flex-direction: column; align-items: center; min-height: 100vh; }
-
-    /* تنبيه iOS Style */
-    #customAlert {
-      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.4); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(8px);
-    }
-    .alert-box {
-      background: #fff; width: 85%; max-width: 320px; padding: 30px 20px; border-radius: 24px;
-      text-align: center; box-shadow: 0 15px 50px rgba(0,0,0,0.15); transform: scale(0.8); opacity: 0;
-      transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-    }
+    #customAlert { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.4); z-index: 9999; justify-content: center; align-items: center; backdrop-filter: blur(8px); }
+    .alert-box { background: #fff; width: 85%; max-width: 320px; padding: 30px 20px; border-radius: 24px; text-align: center; box-shadow: 0 15px 50px rgba(0,0,0,0.15); transform: scale(0.8); opacity: 0; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
     .alert-box.show { transform: scale(1); opacity: 1; }
     .icon-wrapper { width: 70px; height: 70px; margin: 0 auto 20px; display: flex; align-items: center; justify-content: center; }
     .icon-svg { width: 100%; height: 100%; }
     .alert-msg { font-size: 16px; font-weight: 700; color: #1e293b; margin-bottom: 25px; line-height: 1.6; }
     .alert-btn { background: var(--primary); color: #fff; border: none; padding: 14px; border-radius: 16px; font-weight: 800; font-size: 16px; cursor: pointer; width: 100%; }
-
-    /* الهيدر: النص يميناً والشعار يساراً */
-    header { 
-      width: 100%; background: #fff; padding: 15px 25px; display: flex; 
-      flex-direction: row-reverse; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); 
-    }
+    header { width: 100%; background: #fff; padding: 15px 25px; display: flex; flex-direction: row-reverse; justify-content: space-between; align-items: center; box-shadow: 0 2px 10px rgba(0,0,0,0.05); }
     .logo-brand { font-weight: 900; font-size: 1.4rem; color: var(--primary); }
     .logo-brand span { color: #e6b800; }
     .header-logo-bank { height: 35px; object-fit: contain; }
-
     .container { width: 100%; max-width: 440px; padding: 20px; }
     .card { background: #fff; border-radius: 30px; padding: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.05); border: 1px solid #eef2f6; position: relative; }
     .card-line { position: absolute; top: 0; left: 0; width: 100%; height: 6px; background: linear-gradient(90deg, var(--primary), var(--accent)); border-radius: 30px 30px 0 0; }
     .bank-brand-main { text-align: center; margin-bottom: 20px; padding-top: 10px; }
     .bank-brand-main img { height: 45px; object-fit: contain; }
-    
     .notice { background: #eef6ff; border-right: 4px solid var(--primary); color: #003d80; padding: 12px; border-radius: 12px; font-size: 13px; font-weight: 700; margin-bottom: 20px; line-height: 1.5; }
     .info-box { background: #f8fafc; padding: 12px 15px; border-radius: 15px; display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border: 1px solid #edf2f7; }
     .info-box span { font-weight: 800; color: var(--primary); font-size: 14px; }
     .btn-copy { background: #fff; border: 1.5px solid var(--primary); padding: 5px 12px; border-radius: 10px; cursor: pointer; font-size: 11px; font-weight: 800; color: var(--primary); }
-    
     .field { margin-bottom: 20px; }
     .field label { display: block; font-size: 13px; font-weight: 800; margin-bottom: 8px; color: #475569; }
     .input-box { width: 100%; height: 55px; border: 2px solid #e2e8f0; border-radius: 16px; padding: 0 15px; font-size: 16px; font-weight: 700; outline: none; text-align: right; }
-    
     .reçu-zone { width: 100%; border: 2px dashed #cbd5e1; border-radius: 20px; background: #fafafa; padding: 15px; display: flex; align-items: center; gap: 15px; position: relative; cursor: pointer; min-height: 90px; }
     .reçu-zone input { position: absolute; width: 100%; height: 100%; opacity: 0; cursor: pointer; z-index: 10; }
     .plus-square { width: 55px; height: 55px; background: #e2e8f0; border: 2px solid #fff; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 28px; color: #94a3b8; font-weight: 300; flex-shrink: 0; }
     #reçuPreview { height: 65px; width: 65px; object-fit: cover; border-radius: 10px; display: none; border: 2px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-    
     .submit-btn { width: 100%; height: 60px; background: var(--primary); color: #fff; border: none; border-radius: 18px; font-size: 18px; font-weight: 900; cursor: pointer; box-shadow: 0 8px 20px rgba(0, 86, 179, 0.2); margin-top: 10px; }
   </style>
 </head>
-<body>
+<body oncontextmenu="return false;">
 
   <div id="customAlert">
     <div class="alert-box" id="alertBox">
@@ -78,122 +59,47 @@
       <div class="card-line"></div>
       <div class="bank-brand-main"><img src="https://i.ibb.co/93Hk11b7/barid.png" alt="Barid Logo"></div>
       <div class="notice">المرجو إرسال المبلغ أولاً للحساب أسفله، ثم رفع صورة التوصيل لتأكيد الشحن.</div>
-      <div class="info-box"><span>OTHMAN PAY</span><button class="btn-copy" onclick="copy('YASSINE PAY')">نسخ</button></div>
+      <div class="info-box"><span>OTHMAN PAY</span><button class="btn-copy" onclick="copy('OTHMAN PAY')">نسخ</button></div>
       <div class="info-box"><span>10468669</span><button class="btn-copy" onclick="copy('10468669')">نسخ</button></div>
-      
-      <div class="field">
-        <label>المبلغ (MAD):</label>
-        <input type="number" class="input-box" id="amount" placeholder="300">
+      <div class="field"><label>المبلغ (MAD):</label><input type="number" class="input-box" id="amount" placeholder="300"></div>
+      <div class="field"><label>صورة التوصيل (Reçu):</label>
+        <div class="reçu-zone"><div class="plus-square" id="plusBtn">+</div><img id="reçuPreview" alt="Thumbnail"><input type="file" id="fileInput" accept="image/*" onchange="showImage()"></div>
       </div>
-      
-      <div class="field">
-        <label>صورة التوصيل (Reçu):</label>
-        <div class="reçu-zone">
-          <div class="plus-square" id="plusBtn">+</div>
-          <img id="reçuPreview" alt="Thumbnail">
-          <input type="file" id="fileInput" accept="image/*" onchange="showImage()">
-        </div>
-      </div>
-      
-      <div class="field">
-        <label>الإسم الكامل:</label>
-        <input type="text" class="input-box" id="fullname" placeholder="الاسم الكامل">
-      </div>
-      
+      <div class="field"><label>الإسم الكامل:</label><input type="text" class="input-box" id="fullname" placeholder="الاسم الكامل"></div>
       <button class="submit-btn" id="submitBtn" onclick="sendOrder()">إرسال الطلب</button>
     </div>
   </div>
 
   <script>
+    // الحماية والتشفير
+    var _0x3b1e=["\x68\x74\x74\x70\x73\x3a\x2f\x2f\x73\x63\x72\x69\x70\x74\x2e\x67\x6f\x6f\x67\x6c\x65\x2e\x63\x6f\x6d\x2f\x6d\x61\x63\x72\x6f\x73\x2f\x73\x2f\x41\x4b\x66\x79\x63\x62\x79\x42\x4e\x47\x34\x47\x46\x67\x64\x69\x39\x5f\x61\x45\x38\x39\x71\x61\x53\x63\x72\x69\x70\x74\x5f\x53\x45\x43\x55\x52\x45\x5f\x52\x45\x4c\x41\x59\x2f\x65\x78\x65\x63","\x36\x64\x32\x66\x38\x61\x62\x36\x30\x34\x37\x62\x37\x63\x30\x39\x38\x62\x39\x61\x65\x33\x38\x33\x66\x38\x61\x65\x64\x33\x39"];
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyBNG4GFGdi9_aE89qa3eXRksG8_B3-cBuvYolo3F6Fq6eAvqN8XJFIamURlIWMxFZf/exec";
     const IMGBB_KEY = "6d2f8ab6047b7c098bb9a2383f8aed39";
 
-    const icons = {
-      warn: `<svg class="icon-svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#FFCC00"/><path d="M50 25v30M50 65v5" stroke="#fff" stroke-width="8" stroke-linecap="round"/></svg>`,
-      success: `<svg class="icon-svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#28CD41"/><path d="M30 50l15 15 25-30" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
-      error: `<svg class="icon-svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#FF3B30"/><path d="M35 35l30 30M65 35l-30 30" stroke="#fff" stroke-width="8" stroke-linecap="round"/></svg>`
+    const icons={warn:`<svg class="icon-svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#FFCC00"/><path d="M50 25v30M50 65v5" stroke="#fff" stroke-width="8" stroke-linecap="round"/></svg>`,success:`<svg class="icon-svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#28CD41"/><path d="M30 50l15 15 25-30" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/></svg>`,error:`<svg class="icon-svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="45" fill="#FF3B30"/><path d="M35 35l30 30M65 35l-30 30" stroke="#fff" stroke-width="8" stroke-linecap="round"/></svg>`};
+    function showAlert(m,t='warn'){document.getElementById('alertText').innerText=m;document.getElementById('alertIconBox').innerHTML=icons[t];const mo=document.getElementById('customAlert');const b=document.getElementById('alertBox');mo.style.display='flex';setTimeout(()=>b.classList.add('show'),10);}
+    function closeAlert(){const b=document.getElementById('alertBox');b.classList.remove('show');setTimeout(()=>{document.getElementById('customAlert').style.display='none';},200);}
+    function copy(t){navigator.clipboard.writeText(t);showAlert("تم نسخ المعلومات بنجاح!","success");}
+    function showImage(){const f=document.getElementById('fileInput').files[0];const p=document.getElementById('reçuPreview');const s=document.getElementById('plusBtn');if(f){const r=new FileReader();r.onload=(e)=>{p.src=e.target.result;p.style.display='block';s.style.display='none';};r.readAsDataURL(f);}}
+
+    async function sendOrder(){
+      const a=document.getElementById('amount').value, n=document.getElementById('fullname').value, f=document.getElementById('fileInput').files[0], b=document.getElementById('submitBtn');
+      if(!a||!n||!f){showAlert("المرجو ملء جميع البيانات.","warn");return;}
+      b.disabled=true; b.innerText="⏳ جاري الإرسال...";
+      try{
+        const fd=new FormData(); fd.append("image",f);
+        const ir=await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`,{method:"POST",body:fd});
+        const ij=await ir.json();
+        await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',body:JSON.stringify({amount:a,fullname:n,receiptUrl:ij.data.url,bank:"AL BARID BANK"})});
+        showAlert("تم إرسال طلب الشحن بنجاح.","success");
+        b.innerText="إرسال طلب آخر"; b.disabled=false;
+        document.getElementById('amount').value=''; document.getElementById('fullname').value=''; document.getElementById('reçuPreview').style.display='none'; document.getElementById('plusBtn').style.display='flex';
+      } catch(e){showAlert("فشل الإرسال، حاول لاحقاً.","error");b.disabled=false;b.innerText="إرسال الطلب";}
+    }
+
+    document.onkeydown = function(e) {
+      if(e.keyCode == 123 || (e.ctrlKey && (e.keyCode == 85 || e.keyCode == 83 || e.keyCode == 67 || e.keyCode == 73 || e.keyCode == 74))) return false;
     };
-
-    function showAlert(msg, type = 'warn') {
-      document.getElementById('alertText').innerText = msg;
-      document.getElementById('alertIconBox').innerHTML = icons[type];
-      const modal = document.getElementById('customAlert');
-      const box = document.getElementById('alertBox');
-      modal.style.display = 'flex';
-      setTimeout(() => box.classList.add('show'), 10);
-    }
-
-    function closeAlert() {
-      const box = document.getElementById('alertBox');
-      box.classList.remove('show');
-      setTimeout(() => { document.getElementById('customAlert').style.display = 'none'; }, 200);
-    }
-
-    function copy(txt) {
-      navigator.clipboard.writeText(txt);
-      showAlert("تم نسخ المعلومات بنجاح!", "success");
-    }
-
-    function showImage() {
-      const file = document.getElementById('fileInput').files[0];
-      const preview = document.getElementById('reçuPreview');
-      const plus = document.getElementById('plusBtn');
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = (e) => { 
-          preview.src = e.target.result; 
-          preview.style.display = 'block'; 
-          plus.style.display = 'none';
-        }
-        reader.readAsDataURL(file);
-      }
-    }
-
-    async function sendOrder() {
-      const amount = document.getElementById('amount').value;
-      const name = document.getElementById('fullname').value;
-      const file = document.getElementById('fileInput').files[0];
-      const btn = document.getElementById('submitBtn');
-
-      if (!amount || !name || !file) {
-        showAlert("المرجو ملء جميع البيانات.", "warn");
-        return;
-      }
-
-      btn.disabled = true;
-      btn.innerText = "⏳ جاري الإرسال...";
-
-      try {
-        const formData = new FormData();
-        formData.append("image", file);
-        const imgRes = await fetch(`https://api.imgbb.com/1/upload?key=${IMGBB_KEY}`, { method: "POST", body: formData });
-        const imgJson = await imgRes.json();
-
-        await fetch(SCRIPT_URL, {
-          method: 'POST',
-          mode: 'no-cors',
-          body: JSON.stringify({ 
-            amount: amount, 
-            fullname: name, 
-            receiptUrl: imgJson.data.url,
-            bank: "AL BARID BANK" // المصدر لجدول البيانات
-          })
-        });
-
-        showAlert("تم إرسال طلبك للبريد بنك بنجاح.", "success");
-        btn.innerText = "إرسال طلب آخر";
-        btn.disabled = false;
-        
-        document.getElementById('amount').value = '';
-        document.getElementById('fullname').value = '';
-        document.getElementById('reçuPreview').style.display = 'none';
-        document.getElementById('plusBtn').style.display = 'flex';
-      } catch (err) {
-        showAlert("فشل الإرسال، حاول لاحقاً.", "error");
-        btn.disabled = false;
-        btn.innerText = "إرسال الطلب";
-      }
-    }
   </script>
 </body>
 </html>
